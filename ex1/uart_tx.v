@@ -29,7 +29,8 @@ module uart_tx(
     output reg dout = 1
     );
 
-reg [16:0] cnt, bit_cnt;
+reg [15:0] cnt;
+reg [7:0] bit_cnt;
 reg [7:0] data_tx_reg;
 parameter clks_tw = 10416;
 
@@ -38,6 +39,7 @@ parameter clks_tw = 10416;
 `define IDLE 3'b000
 `define STOP 3'b010
 reg [2:0] state = `IDLE;
+
 
 always @(posedge clk)
 begin

@@ -1,5 +1,5 @@
 ISim log file
-Running: /home/morty/ex1/uart_tx_test_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/morty/ex1/uart_tx_test_isim_beh.wdb 
+Running: /home/morty/ex1/uart_rx_test_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/morty/ex1/uart_rx_test_isim_beh.wdb 
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -20,8 +20,7 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run 100.00ms
-Stopped at time : 26853760 ns : File "/home/morty/ex1/uart_tx_test.v" Line 52
+# run 10.00ms
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -30,6 +29,7 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run 10.00ms
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -38,6 +38,7 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run 10.00ms
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -46,7 +47,7 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run 100.00ms
+# run 10.00ms
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -55,6 +56,4 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run 100.00ms
-# step
-Stopped at time : 100001020 ns : File "/home/morty/ex1/uart_tx_test.v" Line 53
+# run 10.00ms
