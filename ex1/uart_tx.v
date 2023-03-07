@@ -24,6 +24,7 @@ module uart_tx(
     input wire clk,
 	 input wire rst,
     input wire en,
+	 
     input wire [7:0] data_tx,
     output reg rdy = 1,
     output reg dout = 1
@@ -32,7 +33,6 @@ module uart_tx(
 reg [15:0] cnt;
 reg [7:0] bit_cnt;
 reg [7:0] data_tx_reg;
-parameter clks_tw = 10416;
 
 
 `define SEND 3'b001
@@ -58,14 +58,14 @@ begin
 			end
 			
 			`SEND: begin
-				if(cnt >= clks_tw && bit_cnt < 8)
+				if(cnt >= glob.CLKS_TW && bit_cnt < 8)
 				begin
 					dout <= data_tx_reg[bit_cnt];
 					bit_cnt <= bit_cnt +1;
 					cnt <= 0;
 				end
 				
-				if(cnt >= clks_tw && bit_cnt >= 8)
+				if(cnt >= glob.CLKS_TW && bit_cnt >= 8)
 				begin
 					dout <= 1;
 					cnt <= 0;
@@ -74,7 +74,7 @@ begin
 			end
 			
 			`STOP: begin				
-				if(cnt >= clks_tw)
+				if(cnt >= glob.CLKS_TW)
 				begin
 					rdy <= 1;
 					state <= `IDLE;
