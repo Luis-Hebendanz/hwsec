@@ -1,0 +1,3 @@
+verilog isim_temp "../example/foo_counter.v"
+verilog isim_temp "../example/ex2_tb.v"
+verilog isim_temp "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v"
