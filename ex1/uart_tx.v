@@ -69,7 +69,7 @@ begin
 				begin
 					dout <= 1;
 					cnt <= 0;
-					state = `STOP;
+					state <= `STOP;
 				end
 			end
 			
@@ -77,7 +77,7 @@ begin
 				if(cnt >= clks_tw)
 				begin
 					rdy <= 1;
-					state = `IDLE;
+					state <= `IDLE;
 				end
 			end
 		endcase
