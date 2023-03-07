@@ -1,11 +1,12 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Tue Mar 07 15:48:20 2023
+// Written by: Map P.20131013 on Tue Mar 07 16:00:15 2023
 //! **************************************************************************
 
 SCHEMATIC START;
 PROHIBIT = SITE "P144";
 PROHIBIT = SITE "P69";
 PROHIBIT = SITE "P60";
+COMP "LED1" LOCATE = SITE "P112" LEVEL 1;
 COMP "RX" LOCATE = SITE "P101" LEVEL 1;
 COMP "TX" LOCATE = SITE "P105" LEVEL 1;
 COMP "CLK" LOCATE = SITE "P94" LEVEL 1;

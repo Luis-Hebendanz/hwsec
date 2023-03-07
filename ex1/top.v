@@ -13,7 +13,8 @@
 module top(
     input wire CLK,
 	 input wire RX,
-	 output wire TX
+	 output wire TX,
+	 output reg LED1
     );
 
 // Outputs
@@ -56,6 +57,13 @@ begin
 	begin
 		data_tx <= data_rx;
 		en <= 1;
+		if(data_rx == "L")
+		begin
+			LED1 <= 1;
+		end else
+		begin
+			LED1 <= 0;
+		end
 	end
 end
 
