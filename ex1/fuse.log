@@ -9,14 +9,13 @@ Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into li
 Starting static elaboration
 Completed static elaboration
 Fuse Memory Usage: 82948 KB
-Fuse CPU Usage: 760 ms
+Fuse CPU Usage: 1150 ms
 Compiling module uart_tx
 Compiling module uart_tx_test
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
 Compiled 3 Verilog Units
 Built simulation executable /home/morty/ex1/uart_tx_test_isim_beh.exe
 Fuse Memory Usage: 643140 KB
-Fuse CPU Usage: 770 ms
-GCC CPU Usage: 370 ms
+Fuse CPU Usage: 1180 ms
+GCC CPU Usage: 550 ms

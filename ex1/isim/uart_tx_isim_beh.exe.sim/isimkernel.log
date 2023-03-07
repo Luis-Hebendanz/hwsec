@@ -2,9 +2,9 @@ Command line:
    uart_tx_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  39685
+     -socket  54959
 
-Mon Mar  6 17:05:28 2023
+Tue Mar  7 10:09:18 2023
 
 
  Elaboration Time: 0.03 sec
@@ -18,12 +18,12 @@ Mon Mar  6 17:05:28 2023
  Total Primitive Blocks : 2
  Total Processes        : 9
  Total Traceable Variables  : 25
- Total Scalar Nets and Variables : 153
-Total Line Count : 42
+ Total Scalar Nets and Variables : 185
+Total Line Count : 43
 
- Total Simulation Time: 0.03 sec
+ Total Simulation Time: 0.05 sec
 
  Current Memory Usage: 259.342 Meg
 
-Mon Mar  6 17:05:33 2023
+Tue Mar  7 10:09:25 2023
 

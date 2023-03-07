@@ -65,15 +65,16 @@ begin
 				
 				if(cnt >= clks_tw && bit_cnt >= 8)
 				begin
+					dout <= 1;
+					cnt <= 0;
 					state = `STOP;
 				end
 			end
 			
-			`STOP: begin
+			`STOP: begin				
 				if(cnt >= clks_tw)
 				begin
-					dout <= 0;
-					rdy <= 0;
+					rdy <= 1;
 					state = `IDLE;
 				end
 			end
