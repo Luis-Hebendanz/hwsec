@@ -1,0 +1,3 @@
+verilog work "uart_tx_sol.v"
+verilog work "uart_rx_sol.v"
+verilog work "top.v"

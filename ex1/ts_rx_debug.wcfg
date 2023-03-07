@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/morty/ex1/uart_rx_test_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="uart_rx_test" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/uart_rx_test/dout" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">dout</obj_property>
+      <obj_property name="ObjectShortName">dout</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/data_rx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_rx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_rx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/rxi/bit_cnt" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bit_cnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bit_cnt[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/rxi/cnt" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cnt[15:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/data_tx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_tx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_tx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/valid" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">valid</obj_property>
+      <obj_property name="ObjectShortName">valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/rdy" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rdy</obj_property>
+      <obj_property name="ObjectShortName">rdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/CLKS_TW" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">CLKS_TW[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLKS_TW[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/uart_rx_test/END_TIME" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">END_TIME[31:0]</obj_property>
+      <obj_property name="ObjectShortName">END_TIME[31:0]</obj_property>
+   </wvobject>
+</wave_config>

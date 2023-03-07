@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/morty/ex1/top.ncd
+OUTFILE=/home/morty/ex1/top.bit
+FAMILY=Spartan6
+PART=xc6slx9-2tqg144
+WORKINGDIR=/home/morty/ex1
+LICENSE=WebPack
+USER_INFO=178569875_1777498747_0_137
