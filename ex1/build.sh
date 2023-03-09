@@ -4,4 +4,4 @@ echo "==== FLASHING ======"
 sudo xc3sprog -c papilio top.bit
 
 echo "==== CONNECTION ===="
-minicom -D /dev/ttyUSB1 -b 9600
+minicom -D /dev/ttyUSB1 -b 115200

@@ -29,8 +29,8 @@ CONFIG PROHIBIT=P60;
 NET CLK            LOC="P94"  | IOSTANDARD=LVTTL | PERIOD=31.25ns;               # CLK
 NET RX             LOC="P101" | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST;          # RX
 NET TX             LOC="P105" | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP; # TX
-#NET A0             LOC="P48"  | IOSTANDARD=LVTTL;                                # A0
-#NET A1             LOC="P51"  | IOSTANDARD=LVTTL;                                # A1
+NET A0             LOC="P48"  | IOSTANDARD=LVTTL;                                # A0
+NET A1             LOC="P51"  | IOSTANDARD=LVTTL;                                # A1
 #NET A2             LOC="P56"  | IOSTANDARD=LVTTL;                                # A2
 #NET A3             LOC="P58"  | IOSTANDARD=LVTTL;                                # A3
 #NET A4             LOC="P61"  | IOSTANDARD=LVTTL;                                # A4
@@ -59,8 +59,8 @@ NET TX             LOC="P105" | IOSTANDARD=LVTTL | DRIVE=8 | SLEW=FAST | PULLUP;
 #NET B11            LOC="P59"  | IOSTANDARD=LVTTL;                                # B11
 #NET B12            LOC="P57"  | IOSTANDARD=LVTTL;                                # B12
 #NET B13            LOC="P55"  | IOSTANDARD=LVTTL;                                # B13
-#NET B14            LOC="P50"  | IOSTANDARD=LVTTL;                                # B14
-#NET B15            LOC="P47"  | IOSTANDARD=LVTTL;                                # B15
+NET B14            LOC="P50"  | IOSTANDARD=LVTTL;                                # B14
+NET B15            LOC="P47"  | IOSTANDARD=LVTTL;                                # B15
 #NET C0             LOC="P114" | IOSTANDARD=LVTTL;                                # C0
 #NET C1             LOC="P115" | IOSTANDARD=LVTTL;                                # C1
 #NET C2             LOC="P116" | IOSTANDARD=LVTTL;                                # C2

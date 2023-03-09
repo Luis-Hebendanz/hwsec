@@ -5,6 +5,6 @@
 
 `define SYSTEM_CLOCK    32000000
 
-`define BAUD_RATE       9600   
+`define BAUD_RATE       115200   
 `define UART_FULL_ETU   (`SYSTEM_CLOCK/`BAUD_RATE)
 `define UART_HALF_ETU   ((`SYSTEM_CLOCK/`BAUD_RATE)/2)
