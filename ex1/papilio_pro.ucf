@@ -33,7 +33,7 @@ NET A0             LOC="P48"  | IOSTANDARD=LVTTL;                               
 NET A1             LOC="P51"  | IOSTANDARD=LVTTL;                                # A1
 #NET A2             LOC="P56"  | IOSTANDARD=LVTTL;                                # A2
 #NET A3             LOC="P58"  | IOSTANDARD=LVTTL;                                # A3
-#NET A4             LOC="P61"  | IOSTANDARD=LVTTL;                                # A4
+NET A4             LOC="P61"  | IOSTANDARD=LVTTL;                                # A4
 #NET A5             LOC="P66"  | IOSTANDARD=LVTTL;                                # A5
 #NET A6             LOC="P67"  | IOSTANDARD=LVTTL;                                # A6
 #NET A7             LOC="P75"  | IOSTANDARD=LVTTL;                                # A7
@@ -59,8 +59,8 @@ NET A1             LOC="P51"  | IOSTANDARD=LVTTL;                               
 #NET B11            LOC="P59"  | IOSTANDARD=LVTTL;                                # B11
 #NET B12            LOC="P57"  | IOSTANDARD=LVTTL;                                # B12
 #NET B13            LOC="P55"  | IOSTANDARD=LVTTL;                                # B13
-NET B14            LOC="P50"  | IOSTANDARD=LVTTL;                                # B14
-NET B15            LOC="P47"  | IOSTANDARD=LVTTL;                                # B15
+#NET B14            LOC="P50"  | IOSTANDARD=LVTTL;                                # B14
+#NET B15            LOC="P47"  | IOSTANDARD=LVTTL;                                # B15
 #NET C0             LOC="P114" | IOSTANDARD=LVTTL;                                # C0
 #NET C1             LOC="P115" | IOSTANDARD=LVTTL;                                # C1
 #NET C2             LOC="P116" | IOSTANDARD=LVTTL;                                # C2
