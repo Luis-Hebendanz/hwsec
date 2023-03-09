@@ -101,9 +101,13 @@ uart_rx_sol rxi (
 );
 
 `define NORMAL 3'b000
+`define PRE_NORMAL 3'b110
 `define BOTH_GREEN 3'b001
-`define BOTH_RED 3'b010
-reg [2:0] state = `NORMAL;
+`define G_GOLD 3'b010
+`define G_SILVER 3'b011
+`define BOTH_RED 3'b111
+`define NONE 3'b100
+reg [2:0] state = `NONE;
 
 
 always @(posedge CLK)
@@ -113,6 +117,9 @@ en <= 0; // disable fpga transmitter
 gold_en <= 0; // disable gold transmitter
 silver_en <= 0; // disable silver transmitter
 
+case(state)
+
+`NORMAL: begin
 // Gold communication
 if(gold_valid) // if gold send valid data
 begin
@@ -122,7 +129,6 @@ begin
 		en <= 1; // enable fgpa transmitter uart
 	end
 
-	
 	if(silver_rdy)
 	begin
 		silver_data_tx <= gold_data_rx; // send gold received data to silver board
@@ -145,32 +151,78 @@ begin
 		gold_en <= 1;
 	end
 end
+end // end case
+
+`BOTH_GREEN: begin
+	if(gold_rdy & silver_rdy) // if gold & silver uart are ready to send
+	begin
+		gold_data_tx <= "G";  // Send G to gold board
+		silver_data_tx <= "G"; // Send G to silver board
+		gold_en <= 1;
+		silver_en <= 1;
+	end
+end
+
+`PRE_NORMAL: begin
+	if(gold_rdy)
+	begin
+		gold_data_tx <= "G";  // Send G to gold board
+		gold_en <= 1;
+		state = `NORMAL;
+	end
+end
+
+`G_GOLD: begin
+	if(gold_rdy)
+	begin
+		gold_data_tx <= "G";  // Send G to gold board
+		gold_en <= 1;
+		state = `NONE;
+	end
+end
+
+`G_SILVER: begin
+	if(silver_rdy)
+	begin
+		silver_data_tx <= "G";  // Send G to gold board
+		silver_en <= 1;
+		state = `NONE;
+	end
+end
+
+`BOTH_RED: begin
+	state = `NONE; // Do nothing
+end
+
+endcase
 
 if(rdy) // If fpga uart is ready to send
 begin
-
-	LED1 <= ~LED1; // Toggle LED1
 	// PC communication
 	if(valid) // if fpga received valid data on uart receiver
 	begin
 		case (data_rx) // if fpga received data matches to...
-			"l": begin
+			"t": begin
 				LED1 <= ~LED1; // Toggle LED1
 			end
-			"G": begin
-				gold_data_tx <= "G"; // Send G to gold board
-				silver_data_tx <= "G"; // Send G to silver board
-				data_tx <= "G";
-				gold_en <= 1;
-				silver_en <= 1;
-				en <= 1; // enable fgpa transmitter uart
+			"1": begin
+				state = `G_GOLD;
 			end
-		default:
-			begin
-				data_tx <= data_rx; // fpga uart echo back received data
-				en <= 1; // enable fgpa transmitter uart
+			"2": begin
+				state = `G_SILVER;
+			end
+			"G": begin
+				state = `BOTH_GREEN;
+			end
+			"R": begin
+				state = `BOTH_RED;
+			end
+			"N": begin
+				state = `PRE_NORMAL;
 			end
 		endcase
+		data_tx <= data_rx; // fpga uart echo back received data
+		en <= 1; // enable fgpa transmitter uart
 	end
 end
 

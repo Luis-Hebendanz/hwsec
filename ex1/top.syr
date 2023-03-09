@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Reading design: top.prj
@@ -142,14 +142,27 @@ Synthesizing Unit <top>.
     Related source file is "/home/morty/ex1/top.v".
     Found 1-bit register for signal <gold_en>.
     Found 1-bit register for signal <silver_en>.
-    Found 8-bit register for signal <data_tx>.
-    Found 8-bit register for signal <silver_data_tx>.
+    Found 3-bit register for signal <state>.
     Found 8-bit register for signal <gold_data_tx>.
+    Found 8-bit register for signal <silver_data_tx>.
+    Found 8-bit register for signal <data_tx>.
     Found 1-bit register for signal <LED1>.
     Found 1-bit register for signal <en>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 7                                              |
+    | Transitions        | 75                                             |
+    | Inputs             | 11                                             |
+    | Outputs            | 3                                              |
+    | Clock              | CLK (rising_edge)                              |
+    | Power Up State     | 100                                            |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
     Summary:
 	inferred  28 D-type flip-flop(s).
-	inferred  11 Multiplexer(s).
+	inferred  27 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
 Unit <top> synthesized.
 
 Synthesizing Unit <uart_rx_sol>.
@@ -159,7 +172,7 @@ Synthesizing Unit <uart_rx_sol>.
     Found 3-bit register for signal <bit_cnt>.
     Found 8-bit register for signal <data_out>.
     Found 2-bit register for signal <state>.
-    Found finite state machine <FSM_0> for signal <state>.
+    Found finite state machine <FSM_1> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 3                                              |
     | Transitions        | 8                                              |
@@ -179,7 +192,7 @@ Synthesizing Unit <uart_rx_sol>.
     Summary:
 	inferred   2 Adder/Subtractor(s).
 	inferred  27 D-type flip-flop(s).
-	inferred   7 Multiplexer(s).
+	inferred   6 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <uart_rx_sol> synthesized.
 
@@ -191,7 +204,7 @@ Synthesizing Unit <uart_tx_sol>.
     Found 8-bit register for signal <data>.
     Found 3-bit register for signal <bit_cnt>.
     Found 2-bit register for signal <state>.
-    Found finite state machine <FSM_1> for signal <state>.
+    Found finite state machine <FSM_2> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 9                                              |
@@ -227,13 +240,13 @@ Macro Statistics
  15-bit register                                       : 6
  3-bit register                                        : 6
  8-bit register                                        : 9
-# Multiplexers                                         : 53
- 1-bit 2-to-1 multiplexer                              : 14
+# Multiplexers                                         : 66
+ 1-bit 2-to-1 multiplexer                              : 22
  15-bit 2-to-1 multiplexer                             : 15
  15-bit 4-to-1 multiplexer                             : 6
  3-bit 2-to-1 multiplexer                              : 6
- 8-bit 2-to-1 multiplexer                              : 12
-# FSMs                                                 : 6
+ 8-bit 2-to-1 multiplexer                              : 17
+# FSMs                                                 : 7
 
 =========================================================================
 
@@ -260,12 +273,12 @@ Macro Statistics
  3-bit up counter                                      : 6
 # Registers                                            : 175
  Flip-Flops                                            : 175
-# Multiplexers                                         : 68
- 1-bit 2-to-1 multiplexer                              : 38
+# Multiplexers                                         : 81
+ 1-bit 2-to-1 multiplexer                              : 46
  15-bit 2-to-1 multiplexer                             : 15
  15-bit 4-to-1 multiplexer                             : 6
- 8-bit 2-to-1 multiplexer                              : 9
-# FSMs                                                 : 6
+ 8-bit 2-to-1 multiplexer                              : 14
+# FSMs                                                 : 7
 
 =========================================================================
 
@@ -273,9 +286,22 @@ Macro Statistics
 *                         Low Level Synthesis                           *
 =========================================================================
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <gold_recv/FSM_0> on signal <state[1:2]> with user encoding.
-Optimizing FSM <silver_recv/FSM_0> on signal <state[1:2]> with user encoding.
-Optimizing FSM <rxi/FSM_0> on signal <state[1:2]> with user encoding.
+Optimizing FSM <FSM_0> on signal <state[1:3]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 100   | 100
+ 000   | 000
+ 010   | 010
+ 011   | 011
+ 001   | 001
+ 111   | 111
+ 110   | 110
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <gold_recv/FSM_1> on signal <state[1:2]> with user encoding.
+Optimizing FSM <silver_recv/FSM_1> on signal <state[1:2]> with user encoding.
+Optimizing FSM <rxi/FSM_1> on signal <state[1:2]> with user encoding.
 -------------------
  State | Encoding
 -------------------
@@ -284,9 +310,9 @@ Optimizing FSM <rxi/FSM_0> on signal <state[1:2]> with user encoding.
  10    | 10
 -------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <gold_tx/FSM_1> on signal <state[1:2]> with gray encoding.
-Optimizing FSM <silver_tx/FSM_1> on signal <state[1:2]> with gray encoding.
-Optimizing FSM <txi/FSM_1> on signal <state[1:2]> with gray encoding.
+Optimizing FSM <gold_tx/FSM_2> on signal <state[1:2]> with gray encoding.
+Optimizing FSM <silver_tx/FSM_2> on signal <state[1:2]> with gray encoding.
+Optimizing FSM <txi/FSM_2> on signal <state[1:2]> with gray encoding.
 -------------------
  State | Encoding
 -------------------
@@ -304,7 +330,7 @@ Optimizing unit <uart_tx_sol> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 7.
+Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 8.
 
 Final Macro Processing ...
 
@@ -312,8 +338,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 205
- Flip-Flops                                            : 205
+# Registers                                            : 208
+ Flip-Flops                                            : 208
 
 =========================================================================
 
@@ -336,22 +362,22 @@ Top Level Output File Name         : top.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 538
+# BELS                             : 546
 #      GND                         : 1
 #      INV                         : 12
 #      LUT1                        : 84
-#      LUT2                        : 8
-#      LUT3                        : 9
-#      LUT4                        : 18
-#      LUT5                        : 94
-#      LUT6                        : 136
+#      LUT2                        : 3
+#      LUT3                        : 20
+#      LUT4                        : 16
+#      LUT5                        : 78
+#      LUT6                        : 154
 #      MUXCY                       : 84
-#      MUXF7                       : 1
+#      MUXF7                       : 3
 #      VCC                         : 1
 #      XORCY                       : 90
-# FlipFlops/Latches                : 205
-#      FD                          : 31
-#      FDE                         : 156
+# FlipFlops/Latches                : 208
+#      FD                          : 10
+#      FDE                         : 180
 #      FDR                         : 12
 #      FDS                         : 6
 # Clock Buffers                    : 1
@@ -367,16 +393,16 @@ Selected Device : 6slx9tqg144-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             205  out of  11440     1%  
- Number of Slice LUTs:                  361  out of   5720     6%  
-    Number used as Logic:               361  out of   5720     6%  
+ Number of Slice Registers:             208  out of  11440     1%  
+ Number of Slice LUTs:                  367  out of   5720     6%  
+    Number used as Logic:               367  out of   5720     6%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    361
-   Number with an unused Flip Flop:     156  out of    361    43%  
-   Number with an unused LUT:             0  out of    361     0%  
-   Number of fully used LUT-FF pairs:   205  out of    361    56%  
-   Number of unique control sets:         9
+ Number of LUT Flip Flop pairs used:    367
+   Number with an unused Flip Flop:     159  out of    367    43%  
+   Number with an unused LUT:             0  out of    367     0%  
+   Number of fully used LUT-FF pairs:   208  out of    367    56%  
+   Number of unique control sets:        12
 
 IO Utilization: 
  Number of IOs:                           8
@@ -406,7 +432,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-CLK                                | BUFGP                  | 205   |
+CLK                                | BUFGP                  | 208   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -417,8 +443,8 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 4.993ns (Maximum Frequency: 200.280MHz)
-   Minimum input arrival time before clock: 4.828ns
+   Minimum period: 5.284ns (Maximum Frequency: 189.251MHz)
+   Minimum input arrival time before clock: 4.663ns
    Maximum output required time after clock: 4.162ns
    Maximum combinational path delay: No path found
 
@@ -428,33 +454,34 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK'
-  Clock period: 4.993ns (frequency: 200.280MHz)
-  Total number of paths / destination ports: 5721 / 271
+  Clock period: 5.284ns (frequency: 189.251MHz)
+  Total number of paths / destination ports: 5707 / 298
 -------------------------------------------------------------------------
-Delay:               4.993ns (Levels of Logic = 3)
-  Source:            rxi/data_out_0 (FF)
-  Destination:       silver_data_tx_3 (FF)
+Delay:               5.284ns (Levels of Logic = 4)
+  Source:            txi/etu_cnt_6 (FF)
+  Destination:       txi/bit_cnt_2 (FF)
   Source Clock:      CLK rising
   Destination Clock: CLK rising
 
-  Data Path: rxi/data_out_0 to silver_data_tx_3
+  Data Path: txi/etu_cnt_6 to txi/bit_cnt_2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              4   0.525   1.234  rxi/data_out_0 (rxi/data_out_0)
-     LUT5:I0->O            1   0.254   0.682  Mmux_data_tx[7]_data_tx[7]_mux_20_OUT121_SW0 (N2)
-     LUT6:I5->O           20   0.254   1.716  Mmux_data_tx[7]_data_tx[7]_mux_20_OUT121 (Mmux_data_tx[7]_data_tx[7]_mux_20_OUT12)
-     LUT5:I0->O            1   0.254   0.000  silver_data_tx_3_rstpot (silver_data_tx_3_rstpot)
-     FD:D                      0.074          silver_data_tx_3
+     FDE:C->Q              2   0.525   1.181  txi/etu_cnt_6 (txi/etu_cnt_6)
+     LUT6:I0->O            2   0.254   0.834  txi/etu_full<14>2 (txi/etu_full<14>1)
+     LUT5:I3->O            1   0.250   0.682  txi/etu_full<14>3_1 (txi/etu_full<14>3)
+     LUT3:I2->O            9   0.254   0.976  txi/_n0093_inv1_rstpot (txi/_n0093_inv1_rstpot)
+     LUT6:I5->O            1   0.254   0.000  txi/bit_cnt_2_dpot (txi/bit_cnt_2_dpot)
+     FDE:D                     0.074          txi/bit_cnt_2
     ----------------------------------------
-    Total                      4.993ns (1.361ns logic, 3.632ns route)
-                                       (27.3% logic, 72.7% route)
+    Total                      5.284ns (1.611ns logic, 3.673ns route)
+                                       (30.5% logic, 69.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
-  Total number of paths / destination ports: 85 / 84
+  Total number of paths / destination ports: 84 / 84
 -------------------------------------------------------------------------
-Offset:              4.828ns (Levels of Logic = 4)
+Offset:              4.663ns (Levels of Logic = 4)
   Source:            RX (PAD)
   Destination:       rxi/bit_cnt_2 (FF)
   Destination Clock: CLK rising
@@ -463,14 +490,14 @@ Offset:              4.828ns (Levels of Logic = 4)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            19   1.328   1.716  RX_IBUF (RX_IBUF)
-     LUT6:I0->O            1   0.254   0.000  rxi/_n0104_inv1_rstpot_F (N40)
-     MUXF7:I0->O          11   0.163   1.039  rxi/_n0104_inv1_rstpot (rxi/_n0104_inv1_rstpot)
-     LUT4:I3->O            1   0.254   0.000  rxi/bit_cnt_1_dpot (rxi/bit_cnt_1_dpot)
-     FDE:D                     0.074          rxi/bit_cnt_1
+     IBUF:I->O            28   1.328   1.908  RX_IBUF (RX_IBUF)
+     LUT6:I0->O            1   0.254   0.000  rxi/_n0106_inv1_rstpot_F (N34)
+     MUXF7:I0->O           1   0.163   0.682  rxi/_n0106_inv1_rstpot (rxi/_n0106_inv1_rstpot)
+     LUT5:I4->O            1   0.254   0.000  rxi/bit_cnt_2_dpot (rxi/bit_cnt_2_dpot)
+     FDE:D                     0.074          rxi/bit_cnt_2
     ----------------------------------------
-    Total                      4.828ns (2.073ns logic, 2.755ns route)
-                                       (42.9% logic, 57.1% route)
+    Total                      4.663ns (2.073ns logic, 2.590ns route)
+                                       (44.5% logic, 55.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
@@ -501,19 +528,19 @@ Clock to Setup on destination clock CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |    4.993|         |         |         |
+CLK            |    5.284|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.71 secs
+Total CPU time to Xst completion: 6.58 secs
  
 --> 
 
 
-Total memory usage is 384868 kilobytes
+Total memory usage is 385028 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    5 (   0 filtered)
