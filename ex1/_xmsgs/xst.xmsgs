@@ -5,6 +5,12 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="1439" delta="old" >"/home/morty/ex1/top.v" Line 85: Multiple packed dimensions are not allowed in this mode of verilog
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1439" delta="old" >"/home/morty/ex1/top.v" Line 88: Multiple packed dimensions are not allowed in this mode of verilog
+</msg>
+
 <msg type="warning" file="HDLCompiler" num="872" delta="old" >"/home/morty/ex1/top.v" Line 26: Using initial value of <arg fmt="%s" index="1">rst</arg> since it is never assigned
 </msg>
 
@@ -18,6 +24,24 @@
 </msg>
 
 <msg type="warning" file="HDLCompiler" num="413" delta="old" >"/home/morty/ex1/uart_tx_sol.v" Line 60: Result of <arg fmt="%d" index="1">4</arg>-bit expression is truncated to fit in <arg fmt="%d" index="2">3</arg>-bit target.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="413" delta="old" >"/home/morty/ex1/top.v" Line 111: Result of <arg fmt="%d" index="1">9</arg>-bit expression is truncated to fit in <arg fmt="%d" index="2">8</arg>-bit target.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="413" delta="old" >"/home/morty/ex1/top.v" Line 124: Result of <arg fmt="%d" index="1">32</arg>-bit expression is truncated to fit in <arg fmt="%d" index="2">8</arg>-bit target.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="413" delta="old" >"/home/morty/ex1/top.v" Line 132: Result of <arg fmt="%d" index="1">9</arg>-bit expression is truncated to fit in <arg fmt="%d" index="2">8</arg>-bit target.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="413" delta="old" >"/home/morty/ex1/top.v" Line 145: Result of <arg fmt="%d" index="1">32</arg>-bit expression is truncated to fit in <arg fmt="%d" index="2">8</arg>-bit target.
+</msg>
+
+<msg type="info" file="Xst" num="3231" delta="old" >The small RAM &lt;<arg fmt="%s" index="1">Mram_gold_buf</arg>&gt; will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+</msg>
+
+<msg type="info" file="Xst" num="3231" delta="old" >The small RAM &lt;<arg fmt="%s" index="1">Mram_fpga_buf</arg>&gt; will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
 </msg>
 
 </messages>
