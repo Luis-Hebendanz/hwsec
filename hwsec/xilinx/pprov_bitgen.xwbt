@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.ncd
+OUTFILE=/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.bit
+FAMILY=Spartan6
+PART=xc6slx9-2tqg144
+WORKINGDIR=/home/lhebendanz/Projects/hwsec/hwsec/xilinx
+LICENSE=WebPack
+USER_INFO=212677609_0_0_939

@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "/home/morty/ex1/foo_and.xst" -ofn "/home/morty/ex1/foo_and.syr" 

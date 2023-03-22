@@ -1,0 +1,628 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.03 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.03 secs
+ 
+--> 
+Reading design: top.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top"
+Output Format                      : NGC
+Target Device                      : xc6slx9-2-tqg144
+
+---- Source Options
+Top Module Name                    : top
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/ex1/uart_tx_sol.v" into library work
+Parsing verilog file "uart_defs.v" included at line 1.
+Parsing module <uart_tx_sol>.
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/ex1/uart_rx_sol.v" into library work
+Parsing verilog file "uart_defs.v" included at line 1.
+Parsing module <uart_rx_sol>.
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/ex1/top.v" into library work
+Parsing module <top>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <top>.
+
+Elaborating module <uart_rx_sol>.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/ex1/uart_rx_sol.v" Line 29: Result of 16-bit expression is truncated to fit in 15-bit target.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/ex1/uart_rx_sol.v" Line 59: Result of 4-bit expression is truncated to fit in 3-bit target.
+"/home/lhebendanz/Projects/hwsec/ex1/uart_rx_sol.v" Line 76. $display UART RX: Invalid state 0x0
+WARNING:HDLCompiler:1127 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" Line 38: Assignment to gold_valid ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" Line 39: Assignment to gold_data_rx ignored, since the identifier is never used
+
+Elaborating module <uart_tx_sol>.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/ex1/uart_tx_sol.v" Line 31: Result of 16-bit expression is truncated to fit in 15-bit target.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/ex1/uart_tx_sol.v" Line 60: Result of 4-bit expression is truncated to fit in 3-bit target.
+"/home/lhebendanz/Projects/hwsec/ex1/uart_tx_sol.v" Line 89. $display UART TX: Invalid state 0x0
+WARNING:HDLCompiler:1127 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" Line 50: Assignment to gold_rdy ignored, since the identifier is never used
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" Line 124: Result of 9-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" Line 135: Result of 9-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:634 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" Line 26: Net <rst> does not have a driver.
+WARNING:HDLCompiler:634 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" Line 43: Net <gold_data_tx[7]> does not have a driver.
+WARNING:Xst:2972 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" line 34. All outputs of instance <gold_recv> of block <uart_rx_sol> are unconnected in block <top>. Underlying logic will be removed.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <top>.
+    Related source file is "/home/lhebendanz/Projects/hwsec/ex1/top.v".
+INFO:Xst:3210 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" line 34: Output port <data_out> of the instance <gold_recv> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" line 34: Output port <valid> of the instance <gold_recv> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/lhebendanz/Projects/hwsec/ex1/top.v" line 45: Output port <rdy> of the instance <gold_tx> is unconnected or connected to loadless signal.
+WARNING:Xst:653 - Signal <gold_data_tx> is used but never assigned. This sourceless signal will be automatically connected to value GND.
+WARNING:Xst:2935 - Signal 'rst', unconnected in block 'top', is tied to its initial value (0).
+    Found 16x8-bit dual-port RAM <Mram_gold_buf> for signal <gold_buf>.
+    Found 1-bit register for signal <A4>.
+    Found 1-bit register for signal <LED1>.
+    Found 8-bit register for signal <gold_cnt_set>.
+    Found 8-bit register for signal <gold_cnt_get>.
+    Found 3-bit register for signal <state>.
+    Found 8-bit register for signal <data_tx>.
+    Found 1-bit register for signal <en>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 11                                             |
+    | Inputs             | 10                                             |
+    | Outputs            | 3                                              |
+    | Clock              | CLK (rising_edge)                              |
+    | Power Up State     | 111                                            |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit adder for signal <gold_cnt_set[7]_GND_1_o_add_3_OUT> created at line 124.
+    Found 8-bit adder for signal <gold_cnt_get[7]_GND_1_o_add_8_OUT> created at line 135.
+    Found 8-bit comparator greater for signal <gold_cnt_set[7]_GND_1_o_LessThan_2_o> created at line 119
+    Found 8-bit comparator greater for signal <n0009> created at line 137
+    WARNING:Xst:2404 -  FFs/Latches <gold_en<0:0>> (without init value) have a constant value of 0 in block <top>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred  27 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred  14 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <top> synthesized.
+
+Synthesizing Unit <uart_rx_sol>.
+    Related source file is "/home/lhebendanz/Projects/hwsec/ex1/uart_rx_sol.v".
+    Found 1-bit register for signal <valid>.
+    Found 15-bit register for signal <etu_cnt>.
+    Found 3-bit register for signal <bit_cnt>.
+    Found 8-bit register for signal <data_out>.
+    Found 2-bit register for signal <state>.
+    Found finite state machine <FSM_1> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 8                                              |
+    | Inputs             | 4                                              |
+    | Outputs            | 2                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Power Up State     | 00                                             |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 15-bit adder for signal <etu_cnt[14]_GND_2_o_add_3_OUT> created at line 29.
+    Found 3-bit adder for signal <bit_cnt[2]_GND_2_o_add_13_OUT> created at line 59.
+    Found 15-bit 4-to-1 multiplexer for signal <state[1]_etu_cnt[14]_mux_28_OUT> created at line 34.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  27 D-type flip-flop(s).
+	inferred   7 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <uart_rx_sol> synthesized.
+
+Synthesizing Unit <uart_tx_sol>.
+    Related source file is "/home/lhebendanz/Projects/hwsec/ex1/uart_tx_sol.v".
+    Found 1-bit register for signal <dout>.
+    Found 1-bit register for signal <rdy>.
+    Found 15-bit register for signal <etu_cnt>.
+    Found 8-bit register for signal <data>.
+    Found 3-bit register for signal <bit_cnt>.
+    Found 2-bit register for signal <state>.
+    Found finite state machine <FSM_2> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 9                                              |
+    | Inputs             | 3                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | rst (positive)                                 |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00                                             |
+    | Power Up State     | 00                                             |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 15-bit adder for signal <etu_cnt[14]_GND_3_o_add_2_OUT> created at line 31.
+    Found 3-bit adder for signal <bit_cnt[2]_GND_3_o_add_8_OUT> created at line 60.
+    Found 15-bit 4-to-1 multiplexer for signal <state[1]_etu_cnt[14]_wide_mux_20_OUT> created at line 38.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  28 D-type flip-flop(s).
+	inferred   7 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <uart_tx_sol> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 16x8-bit dual-port RAM                                : 1
+# Adders/Subtractors                                   : 8
+ 15-bit adder                                          : 3
+ 3-bit adder                                           : 3
+ 8-bit adder                                           : 2
+# Registers                                            : 20
+ 1-bit register                                        : 8
+ 15-bit register                                       : 3
+ 3-bit register                                        : 3
+ 8-bit register                                        : 6
+# Comparators                                          : 2
+ 8-bit comparator greater                              : 2
+# Multiplexers                                         : 35
+ 1-bit 2-to-1 multiplexer                              : 8
+ 15-bit 2-to-1 multiplexer                             : 7
+ 15-bit 4-to-1 multiplexer                             : 3
+ 3-bit 2-to-1 multiplexer                              : 3
+ 8-bit 2-to-1 multiplexer                              : 14
+# FSMs                                                 : 4
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <top>.
+INFO:Xst:3231 - The small RAM <Mram_gold_buf> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16-word x 8-bit                     |          |
+    |     clkA           | connected to signal <CLK>           | rise     |
+    |     weA            | connected to signal <valid_0_0>     | high     |
+    |     addrA          | connected to signal <gold_cnt_set<3:0>> |          |
+    |     diA            | connected to signal <data_rx>       |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 16-word x 8-bit                     |          |
+    |     addrB          | connected to signal <gold_cnt_get<3:0>> |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <top> synthesized (advanced).
+
+Synthesizing (advanced) Unit <uart_rx_sol>.
+The following registers are absorbed into counter <bit_cnt>: 1 register on signal <bit_cnt>.
+Unit <uart_rx_sol> synthesized (advanced).
+
+Synthesizing (advanced) Unit <uart_tx_sol>.
+The following registers are absorbed into counter <bit_cnt>: 1 register on signal <bit_cnt>.
+Unit <uart_tx_sol> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 16x8-bit dual-port distributed RAM                    : 1
+# Adders/Subtractors                                   : 5
+ 15-bit adder                                          : 3
+ 8-bit adder                                           : 2
+# Counters                                             : 3
+ 3-bit up counter                                      : 3
+# Registers                                            : 101
+ Flip-Flops                                            : 101
+# Comparators                                          : 2
+ 8-bit comparator greater                              : 2
+# Multiplexers                                         : 45
+ 1-bit 2-to-1 multiplexer                              : 23
+ 15-bit 2-to-1 multiplexer                             : 7
+ 15-bit 4-to-1 multiplexer                             : 3
+ 8-bit 2-to-1 multiplexer                              : 12
+# FSMs                                                 : 4
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FSM_0> on signal <state[1:2]> with sequential encoding.
+-------------------
+ State | Encoding
+-------------------
+ 111   | 00
+ 000   | 01
+ 001   | 10
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <gold_tx/FSM_2> on signal <state[1:2]> with gray encoding.
+Optimizing FSM <txi/FSM_2> on signal <state[1:2]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 11
+ 11    | 10
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <rxi/FSM_1> on signal <state[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 10
+-------------------
+
+Optimizing unit <top> ...
+WARNING:Xst:1293 - FF/Latch <gold_cnt_set_5> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <gold_cnt_set_6> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <gold_cnt_set_7> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <gold_cnt_set_5> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <gold_cnt_set_6> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <gold_cnt_set_7> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <uart_tx_sol> ...
+
+Optimizing unit <uart_rx_sol> ...
+WARNING:Xst:1293 - FF/Latch <gold_tx/state_FSM_FFd2> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <gold_tx/dout> has a constant value of 1 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <gold_tx/rdy> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/bit_cnt_2> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/bit_cnt_1> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/bit_cnt_0> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/state_FSM_FFd1> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_14> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_13> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_12> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_11> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_10> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_9> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_8> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_7> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_6> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_5> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_4> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_3> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_2> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_1> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/etu_cnt_0> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/data_7> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/data_6> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/data_5> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/data_4> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/data_3> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/data_2> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/data_1> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <gold_tx/data_0> of sequential type is unconnected in block <top>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 3.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 85
+ Flip-Flops                                            : 85
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : top.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 244
+#      GND                         : 1
+#      INV                         : 6
+#      LUT1                        : 28
+#      LUT2                        : 6
+#      LUT3                        : 15
+#      LUT4                        : 35
+#      LUT5                        : 37
+#      LUT6                        : 56
+#      MUXCY                       : 28
+#      MUXF7                       : 1
+#      VCC                         : 1
+#      XORCY                       : 30
+# FlipFlops/Latches                : 85
+#      FD                          : 40
+#      FDE                         : 37
+#      FDR                         : 5
+#      FDS                         : 2
+#      FDSE                        : 1
+# RAMS                             : 3
+#      RAM16X1D                    : 2
+#      RAM32M                      : 1
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 5
+#      IBUF                        : 1
+#      OBUF                        : 4
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx9tqg144-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              85  out of  11440     0%  
+ Number of Slice LUTs:                  191  out of   5720     3%  
+    Number used as Logic:               183  out of   5720     3%  
+    Number used as Memory:                8  out of   1440     0%  
+       Number used as RAM:                8
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    192
+   Number with an unused Flip Flop:     107  out of    192    55%  
+   Number with an unused LUT:             1  out of    192     0%  
+   Number of fully used LUT-FF pairs:    84  out of    192    43%  
+   Number of unique control sets:         9
+
+IO Utilization: 
+ Number of IOs:                           7
+ Number of bonded IOBs:                   6  out of    102     5%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | BUFGP                  | 88    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 4.698ns (Maximum Frequency: 212.857MHz)
+   Minimum input arrival time before clock: 4.828ns
+   Maximum output required time after clock: 4.162ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK'
+  Clock period: 4.698ns (frequency: 212.857MHz)
+  Total number of paths / destination ports: 2317 / 143
+-------------------------------------------------------------------------
+Delay:               4.698ns (Levels of Logic = 3)
+  Source:            rxi/etu_cnt_10 (FF)
+  Destination:       rxi/state_FSM_FFd2 (FF)
+  Source Clock:      CLK rising
+  Destination Clock: CLK rising
+
+  Data Path: rxi/etu_cnt_10 to rxi/state_FSM_FFd2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               3   0.525   1.221  rxi/etu_cnt_10 (rxi/etu_cnt_10)
+     LUT6:I0->O            2   0.254   0.834  rxi/etu_half<14>2 (rxi/etu_half<14>1)
+     LUT5:I3->O           16   0.250   1.290  rxi/etu_half<14>3 (rxi/etu_half)
+     LUT6:I4->O            1   0.250   0.000  rxi/Mmux_state[1]_etu_cnt[14]_mux_28_OUT16 (rxi/state[1]_etu_cnt[14]_mux_28_OUT<0>)
+     FD:D                      0.074          rxi/etu_cnt_0
+    ----------------------------------------
+    Total                      4.698ns (1.353ns logic, 3.345ns route)
+                                       (28.8% logic, 71.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
+  Total number of paths / destination ports: 29 / 28
+-------------------------------------------------------------------------
+Offset:              4.828ns (Levels of Logic = 4)
+  Source:            RX (PAD)
+  Destination:       rxi/bit_cnt_2 (FF)
+  Destination Clock: CLK rising
+
+  Data Path: RX to rxi/bit_cnt_2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            19   1.328   1.716  RX_IBUF (RX_IBUF)
+     LUT6:I0->O            1   0.254   0.000  rxi/_n0094_inv1_rstpot_F (N89)
+     MUXF7:I0->O          11   0.163   1.039  rxi/_n0094_inv1_rstpot (rxi/_n0094_inv1_rstpot)
+     LUT4:I3->O            1   0.254   0.000  rxi/bit_cnt_1_dpot (rxi/bit_cnt_1_dpot)
+     FDE:D                     0.074          rxi/bit_cnt_1
+    ----------------------------------------
+    Total                      4.828ns (2.073ns logic, 2.755ns route)
+                                       (42.9% logic, 57.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
+  Total number of paths / destination ports: 3 / 3
+-------------------------------------------------------------------------
+Offset:              4.162ns (Levels of Logic = 1)
+  Source:            txi/dout (FF)
+  Destination:       TX (PAD)
+  Source Clock:      CLK rising
+
+  Data Path: txi/dout to TX
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q              2   0.525   0.725  txi/dout (txi/dout)
+     OBUF:I->O                 2.912          TX_OBUF (TX)
+    ----------------------------------------
+    Total                      4.162ns (3.437ns logic, 0.725ns route)
+                                       (82.6% logic, 17.4% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK            |    4.698|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 4.26 secs
+ 
+--> 
+
+
+Total memory usage is 589532 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   51 (   0 filtered)
+Number of infos    :    4 (   0 filtered)
+

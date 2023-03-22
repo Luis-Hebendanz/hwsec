@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Wed Mar 22 16:41:25 2023
+# Process ID: 346446
+# Log file: /home/lhebendanz/Projects/hwsec/ex1/planAhead_run_2/planAhead.log
+# Journal file: /home/lhebendanz/Projects/hwsec/ex1/planAhead_run_2/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/lhebendanz/Projects/hwsec/ex1/pa.fromNetlist.tcl

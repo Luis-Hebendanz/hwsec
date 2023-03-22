@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "luispkgs": {
+      "locked": {
+        "lastModified": 1679489904,
+        "narHash": "sha256-GPBr48LZqF2SiabTo9ZYZmRhXp3Fe+SK2DqKOE6eAcg=",
+        "owner": "Luis-Hebendanz",
+        "repo": "nixpkgs",
+        "rev": "163c9d80757ee14a8c32fe0d4c05c3de36d9f56a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Luis-Hebendanz",
+        "ref": "luispkgs",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1679281263,
+        "narHash": "sha256-neMref1GTruSLt1jBgAw+lvGsZj8arQYfdxvSi5yp4Q=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8276a165b9fa3db1a7a4f29ee29b680e0799b9dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "luispkgs": "luispkgs",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -1,0 +1,8 @@
+#
+NET "clock" LOC = "p94"  | iostandard = LVTTL ;
+NET "led" LOC = "p112" ;
+NET "button" LOC = "p114" ;
+#
+NET "clock" TNM_NET = "clock"; 
+TIMESPEC "TS_clock" = PERIOD "clock" 31.2500000 ns HIGH 50%;
+#
