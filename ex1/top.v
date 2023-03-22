@@ -75,98 +75,99 @@ uart_rx_sol rxi (
 	.data_out(data_rx)
 );
 
-`define NORMAL 3'b000
-`define FPGA_BUF_FULL 3'b001
-`define GOLD_BUF_FULL 3'b010
-`define ERROR 3'b100
-`define NONE 3'b111
 
-reg [2:0] state = `NORMAL;
-reg [3:0][7:0] fpga_buf;
-reg [7:0] fpga_cnt = 8'b0;
+localparam SET_PWD = 3'b000,
+				GET_PWD = 3'b001,
+				IDLE = 3'b111;
+				
+				
+reg [2:0] state = IDLE;
 
-reg [3:0][7:0] gold_buf;
-reg [7:0] gold_cnt = 8'b0;
+// Buffers
+reg [7:0] gold_buf [0:15];
+
+// Counters
+reg [7:0] gold_cnt_set = 8'b0;
+reg [7:0] gold_cnt_get = 8'b0;
+integer i;
 
 initial begin
-	gold_buf[0] = 8'h11;
-	gold_buf[1] = 8'h22;
-	gold_buf[2] = 8'h33;
-	gold_buf[3] = 8'h44;
+
+for (i=0; i < 16; i=i+1) begin
+	gold_buf[i] <= "A"+i;
+end 
+
 end
+
 
 always @(posedge CLK)
 begin
 
-en <= 0; // disable fpga transmitter
-gold_en <= 0; // disable gold transmitter
-A4 <= 1;
+en 			  	<= 0; // disable fpga transmitter
+gold_en 			<= 0; // disable gold transmitter
+A4 				<= 1; // reset is high so no reset
+LED1 				<= 0; // Disable LED
+gold_cnt_set 	<= gold_cnt_set;
+gold_cnt_get 	<= gold_cnt_get;
+state 			<= state;
+data_tx 			<= data_tx;
+gold_data_tx 	<= gold_data_tx;
+rst 				<= rst;
 
 case(state)
-
-`NORMAL: begin
-	if(gold_valid) // if fpga received data from gold board
+SET_PWD: begin
+	if(gold_cnt_set < 16) // if cnt smaller then buf size
 	begin
-		fpga_buf[fpga_cnt] <= gold_data_rx; // buffer gold data to fpga_buf[cnt]
-		fpga_cnt <= fpga_cnt +1;
-		
-		if(fpga_cnt > 4) // check for buffer overflow
+		if(valid) // received data from pc
 		begin
-			state = `ERROR;
+			gold_buf[gold_cnt_set] <= data_rx;
+			gold_cnt_set <= gold_cnt_set +1;
 		end
-	end
-	
-	if(rdy) // Check if fpga transmitter ready
-	begin
-		if(fpga_cnt > 0) // check if data is in fpga buffer 
-		begin
-			data_tx <= fpga_buf[fpga_cnt -1]; // send data from buffer at cnt - 1
-			fpga_cnt <= fpga_cnt -1; // decrement cnt
-			en <= 1;
-		end
-	end
-	
-	if(valid) // If data received from pc
-	begin
-		gold_buf[gold_cnt] <= data_rx; // save to gold_buf
-		gold_cnt <= gold_cnt +1; // increment gold_cnt
-		
-		if(gold_cnt > 4) // check for buffer overflow
-		begin
-			state = `ERROR;
-		end
-	end
-	
-	if(gold_rdy) // if gold transmitter ready
-	begin
-		if(gold_cnt > 0) // If data in gold_buf
-		begin
-			gold_data_tx <= gold_buf[gold_cnt -1]; // send gold_buf[cnt] to gold board
-			gold_cnt <= gold_cnt -1; // decrement gold_cnt
-			gold_en <= 1; // enable gold transmitter
-		end
+	end else begin
+		state <= IDLE;
 	end
 end
 
-`ERROR: begin
+GET_PWD: begin
+	if(rdy) // if fpga transmitter ready
+	begin
+		data_tx 			<= gold_buf[gold_cnt_get];
+		gold_cnt_get 	<= gold_cnt_get + 1;
+		en 				<= 1'b1;
+		state 			<= gold_cnt_get >= 8'd15 ? IDLE : GET_PWD;
+	end
+end
+
+IDLE: begin
 	LED1 <= 1;
+	// PC communication
+	if(valid) // if fpga received valid data on uart receiver
+	begin
+		case (data_rx) // if fpga received data matches to...
+			"t": begin
+				LED1 <= ~LED1; // Toggle LED1
+			end
+			"s": begin
+				gold_cnt_set <= 0;
+				state <= SET_PWD;
+			end
+			"g": begin
+				gold_cnt_get <= 0;
+				state <= GET_PWD;
+			end
+			27: begin // ESC Reset
+				A4 <= 0;
+			end
+			default:
+				if(rdy)
+				begin
+					data_tx <= data_rx;
+				end
+		endcase
+	end
 end
 
 endcase
-
-
-// PC communication
-if(valid) // if fpga received valid data on uart receiver
-begin
-	case (data_rx) // if fpga received data matches to...
-		"t": begin
-			LED1 <= ~LED1; // Toggle LED1
-		end
-		"r": begin // Reset
-			A4 <= 0;
-		end
-	endcase
-end
 
 
 
