@@ -35,15 +35,15 @@
     "reha": {
       "flake": false,
       "locked": {
-        "lastModified": 1545582642,
-        "narHash": "sha256-TmpPQbnmNEzi4hbjmLS/qhTONpRtlNq7GIgYOdC9rHk=",
-        "owner": "cfelton",
+        "lastModified": 1679526914,
+        "narHash": "sha256-zrqWncG3Cj0DTMs7qKbrQQpSE+bTrtmP2R+eSS2KxD8=",
+        "owner": "Luis-Hebendanz",
         "repo": "rhea",
-        "rev": "a442953d8641a0e9592287a2eebd92cb6f694ec4",
+        "rev": "abbaa85d099a3ba50c86a0964fae0b6053345e19",
         "type": "github"
       },
       "original": {
-        "owner": "cfelton",
+        "owner": "Luis-Hebendanz",
         "repo": "rhea",
         "type": "github"
       }

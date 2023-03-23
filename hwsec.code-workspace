@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "hwsec/papilio_pro"
+		},
+		{
+			"path": "hwsec/rhea"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

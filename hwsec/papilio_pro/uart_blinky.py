@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+
+import sys
+sys.path.append("./")
+
+
 import argparse
 import subprocess
 
@@ -70,8 +77,8 @@ def uart_blinky(clock, led, uart_tx, uart_rx):
     def beh_assign():
         if glbl.tick_sec:
             tone.next = (~tone) & 0x1
-        led.next = ledreg | tone[5:] 
-    
+        led.next = ledreg | tone[5:]
+
     @always(clock.posedge)
     def reset_tst():
         '''
@@ -80,29 +87,30 @@ def uart_blinky(clock, led, uart_tx, uart_rx):
         then the reset is lo
         '''
         if (reset_dly_cnt < 31):
-			reset_dly_cnt.next = reset_dly_cnt + 1
-			if (reset_dly_cnt <= 4):
-				reset.next = 1
-			if (reset_dly_cnt >= 5):
-				reset.next = 0
+            reset_dly_cnt.next = reset_dly_cnt + 1
+            if (reset_dly_cnt <= 4):
+                reset.next = 1
+            if (reset_dly_cnt >= 5):
+                reset.next = 0
         else:
             reset.next = 1
-            
+
     return (tick_inst, cmd_inst, uart_inst,
             beh_led_control, beh_led_read, beh_assign, reset_tst)
 
 
 def build(args):
     brd = get_board('ppro')
-    brd.add_port_name('uart_tx', 'tx')                           
+    brd.add_port_name('uart_tx', 'tx')
     brd.add_port_name('uart_rx', 'rx')
-    brd.add_port_name('led', 'winga', slc=slice(0,8))
+    brd.add_port_name('led', 'winga', slc=slice(0, 8))
     flow = brd.get_flow(top=uart_blinky)
     flow.run()
+    program(args)
 
 
 def program(args):
-    subprocess.check_call(["papilio-prog", "-f", "./xilinx/pprov.bit"])
+    subprocess.check_call(args=["papilio", "./xilinx/pprov.bit"], executable="/usr/bin/xc3sprog", shell=True, env={})
 
 
 def cliparse():
@@ -114,27 +122,27 @@ def cliparse():
     return args
 
 
-def test_instance():    
+def test_instance():
     # check for basic syntax errors, use test_ice* to test
     # functionality
     uart_blinky(
         clock=Clock(0, frequency=50e6),
-        led=Signal(intbv(0)[8:]), 
+        led=Signal(intbv(0)[8:]),
         uart_tx=Signal(bool(0)),
         uart_rx=Signal(bool(0)), )
 
-    
+
 def main():
     args = cliparse()
     if args.test:
         test_instance()
-        
+
     if args.build:
         build(args)
 
     if args.program:
         program(args)
 
+
 if __name__ == '__main__':
     main()
-

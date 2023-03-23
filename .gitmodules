@@ -1,0 +1,3 @@
+[submodule "hwsec/rhea"]
+	path = hwsec/rhea
+	url = git@github.com:Luis-Hebendanz/rhea.git

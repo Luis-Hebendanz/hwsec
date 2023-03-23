@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+import sys
+sys.path.append("./")
+
+import subprocess
 
 from pprint import pprint
 from rhea.build.boards import get_board
@@ -5,9 +11,7 @@ from myhdl import (Signal, ResetSignal, intbv, always_seq, always,
                    always_comb)
 import myhdl
 import argparse
-import sys
 
-sys.path.append("./")
 
 
 led_port_pin_map = {
@@ -43,6 +47,10 @@ def ppro_blinky(led, button, clock, reset=None):
     return beh, beh_assign
 
 
+def program(args):
+    subprocess.check_call(args=["papilio", "./xilinx/pprov.bit"], executable="/usr/bin/xc3sprog", shell=True, env={})
+
+
 def build(args):
     brd = get_board(args.brd)
     # the design port names don't match the board pin names,
@@ -53,19 +61,27 @@ def build(args):
     flow.run()
     info = flow.get_utilization()
     pprint(info)
-
+    program(args)
 
 def cliparse():
     parser = argparse.ArgumentParser()
     parser.add_argument("--brd", default='ppro')
     parser.add_argument("--flow", default="ise")
+    parser.add_argument("--build", default=False, action='store_true')
+    parser.add_argument("--test", default=False, action='store_true')
+    parser.add_argument("--program", default=False, action='store_true')
     args = parser.parse_args()
     return args
 
 
 def main():
     args = cliparse()
-    build(args)
+
+    if args.build:
+        build(args)
+
+    if args.program:
+        program(args)
 
 
 if __name__ == '__main__':

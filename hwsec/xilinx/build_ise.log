@@ -230,7 +230,7 @@ Phase 12.5  Local Placement Optimization (Checksum:23512abd) REAL time: 4 secs
 Phase 13.34  Placement Validation
 Phase 13.34  Placement Validation (Checksum:23512abd) REAL time: 4 secs 
 
-Total REAL time to Placer completion: 4 secs 
+Total REAL time to Placer completion: 5 secs 
 Total CPU  time to Placer completion: 4 secs 
 Running post-placement packing...
 Writing output files...
@@ -509,7 +509,7 @@ Loading device for application Rf_Device from file '6slx9.nph' in environment
 ebendanz/Projects/hwsec/xilinx_install/14.7/ISE_DS/ISE/.
    "pprov" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
 
-Analysis completed Wed Mar 22 23:56:36 2023
+Analysis completed Thu Mar 23 11:59:19 2023
 --------------------------------------------------------------------------------
 
 Generating Report ...
@@ -518,10 +518,3 @@ Number of warnings: 0
 Total time: 2 secs 
 
 Process "Generate Post-Place & Route Static Timing" completed successfully
-INFO:TclTasksC:1850 - process run : Generate Programming File is done.
-
-Started : "Generate Programming File".
-Running bitgen...
-Command Line: bitgen -intstyle ise -f pprov.ut pprov.ncd
-
-Process "Generate Programming File" completed successfully

@@ -2,7 +2,7 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.luispkgs.url = "github:Luis-Hebendanz/nixpkgs/luispkgs";
   inputs.reha = {
-    url = "github:cfelton/rhea";
+    url = "github:Luis-Hebendanz/rhea";
     flake = false;
   };
 
@@ -39,7 +39,8 @@
               setuptools
               ipython
               myhdl
-              rhea
+              #rhea
+              pytest
             ];
             python-with-my-packages = spkgs.python3.withPackages my-python-packages;
 
