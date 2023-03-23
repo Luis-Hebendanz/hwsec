@@ -18,7 +18,7 @@ Parsing module <pprov>.
 =========================================================================
 
 Elaborating module <pprov>.
-WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 33: Result of 26-bit expression is truncated to fit in 25-bit target.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 32: Result of 26-bit expression is truncated to fit in 25-bit target.
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -26,13 +26,13 @@ WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v"
 
 Synthesizing Unit <pprov>.
     Related source file is "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v".
+    Found 1-bit register for signal <led>.
     Found 25-bit register for signal <cnt>.
     Found 1-bit register for signal <toggle>.
-    Found 25-bit adder for signal <cnt[24]_GND_1_o_add_2_OUT> created at line 33.
+    Found 25-bit adder for signal <cnt[24]_GND_1_o_add_2_OUT> created at line 32.
     Summary:
 	inferred   1 Adder/Subtractor(s).
-	inferred  26 D-type flip-flop(s).
-	inferred   1 Multiplexer(s).
+	inferred  27 D-type flip-flop(s).
 Unit <pprov> synthesized.
 
 =========================================================================
@@ -41,11 +41,9 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  25-bit adder                                          : 1
-# Registers                                            : 2
- 1-bit register                                        : 1
+# Registers                                            : 3
+ 1-bit register                                        : 2
  25-bit register                                       : 1
-# Multiplexers                                         : 1
- 1-bit 2-to-1 multiplexer                              : 1
 
 =========================================================================
 
@@ -64,8 +62,8 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # Counters                                             : 1
  25-bit up counter                                     : 1
-# Registers                                            : 1
- Flip-Flops                                            : 1
+# Registers                                            : 2
+ Flip-Flops                                            : 2
 
 =========================================================================
 
@@ -85,8 +83,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 26
- Flip-Flops                                            : 26
+# Registers                                            : 27
+ Flip-Flops                                            : 27
 
 =========================================================================
 
@@ -97,12 +95,12 @@ Macro Statistics
 Partition Implementation Status
 -------------------------------
 
-  No Partitions were found iINFO:TclTasksC:1850 - process run : Synthesize - XST is done.
-n this design.
+  No Partitions were found in this design.
 
 -------------------------------
 
-=========================================================================
+========================================================INFO:TclTasksC:1850 - process run : Synthesize - XST is done.
+=================
 *                            Design Summary                             *
 =========================================================================
 
@@ -111,7 +109,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clock                              | BUFGP                  | 26    |
+clock                              | BUFGP                  | 27    |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -122,10 +120,10 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 4.657ns (Maximum Frequency: 214.731MHz)
+   Minimum period: 4.646ns (Maximum Frequency: 215.239MHz)
    Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: 5.242ns
-   Maximum combinational path delay: 5.857ns
+   Maximum output required time after clock: 4.118ns
+   Maximum combinational path delay: No path found
 
 =========================================================================
 
@@ -188,47 +186,47 @@ Total REAL time at the beginning of Placer: 3 secs
 Total CPU  time at the beginning of Placer: 3 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:fe32c301) REAL time: 3 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:a261ce44) REAL time: 3 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:fe32c301) REAL time: 3 secs 
+Phase 2.7  Design Feasibility Check (Checksum:a261ce44) REAL time: 3 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:fe32c301) REAL time: 3 secs 
+Phase 3.31  Local Placement Optimization (Checksum:a261ce44) REAL time: 3 secs 
 
 Phase 4.2  Initial Placement for Architecture Specific Features
 
 Phase 4.2  Initial Placement for Architecture Specific Features
-(Checksum:ea89541c) REAL time: 4 secs 
+(Checksum:856e4950) REAL time: 4 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:ea89541c) REAL time: 4 secs 
+Phase 5.36  Local Placement Optimization (Checksum:856e4950) REAL time: 4 secs 
 
 Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:ea89541c) REAL time: 4 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:856e4950) REAL time: 4 secs 
 
 Phase 7.3  Local Placement Optimization
-Phase 7.3  Local Placement Optimization (Checksum:ea89541c) REAL time: 4 secs 
+Phase 7.3  Local Placement Optimization (Checksum:856e4950) REAL time: 4 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:ea89541c) REAL time: 4 secs 
+Phase 8.5  Local Placement Optimization (Checksum:856e4950) REAL time: 4 secs 
 
 Phase 9.8  Global Placement
-..
-..
-Phase 9.8  Global Placement (Checksum:54d639cd) REAL time: 4 secs 
+...
+...
+Phase 9.8  Global Placement (Checksum:70591cf0) REAL time: 4 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:54d639cd) REAL time: 4 secs 
+Phase 10.5  Local Placement Optimization (Checksum:70591cf0) REAL time: 4 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:23512abd) REAL time: 4 secs 
+Phase 11.18  Placement Optimization (Checksum:da3abc60) REAL time: 4 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:23512abd) REAL time: 4 secs 
+Phase 12.5  Local Placement Optimization (Checksum:da3abc60) REAL time: 4 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:23512abd) REAL time: 4 secs 
+Phase 13.34  Placement Validation (Checksum:da3abc60) REAL time: 4 secs 
 
 Total REAL time to Placer completion: 5 secs 
 Total CPU  time to Placer completion: 4 secs 
@@ -239,16 +237,16 @@ Design Summary:
 Number of errors:      0
 Number of warnings:    0
 Slice Logic Utilization:
-  Number of Slice Registers:                    26 out of  11,440    1%
-    Number used as Flip Flops:                  26
+  Number of Slice Registers:                    27 out of  11,440    1%
+    Number used as Flip Flops:                  27
     Number used as Latches:                      0
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                         58 out of   5,720    1%
-    Number used as logic:                       57 out of   5,720    1%
+  Number of Slice LUTs:                         57 out of   5,720    1%
+    Number used as logic:                       56 out of   5,720    1%
       Number using O6 output only:              32
       Number using O5 output only:              23
-      Number using O5 and O6:                    2
+      Number using O5 and O6:                    1
       Number used as ROM:                        0
     Number used as Memory:                       0 out of   1,440    0%
     Number used exclusively as route-thrus:      1
@@ -257,26 +255,26 @@ Slice Logic Utilization:
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    16 out of   1,430    1%
+  Number of occupied Slices:                    18 out of   1,430    1%
   Number of MUXCYs used:                        28 out of   2,860    1%
   Number of LUT Flip Flop pairs used:           58
-    Number with an unused Flip Flop:            32 out of      58   55%
-    Number with an unused LUT:                   0 out of      58    0%
+    Number with an unused Flip Flop:            31 out of      58   53%
+    Number with an unused LUT:                   1 out of      58    1%
     Number of fully used LUT-FF pairs:          26 out of      58   44%
-    Number of unique control sets:               1
+    Number of unique control sets:               2
     Number of slice register sites lost
-      to control set restrictions:               6 out of  11,440    1%
+      to control set restrictions:              13 out of  11,440    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
-  one Flip Flop within a slice.  A control set is a unique combination INFO:TclTasksC:1850 - process run : Map is done.
-of
+  one Flip Flop within a slice.  A control set is a unique combinatioINFO:TclTasksC:1850 - process run : Map is done.
+n of
   clock, reset, set, and enable signals for a registered element.
   The Slice Logic Distribution report is not meaningful if the design is
   over-mapped for a non-slice resource or if Placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                         3 out of     102    2%
-    Number of LOCed IOBs:                        3 out of       3  100%
+  Number of bonded IOBs:                         2 out of     102    1%
+    Number of LOCed IOBs:                        2 out of       2  100%
 
 Specific Feature Utilization:
   Number of RAMB16BWERs:                         0 out of      32    0%
@@ -303,7 +301,7 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of SUSPEND_SYNCs:                       0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                1.91
+Average Fanout of Non-Clock Nets:                1.88
 
 Peak Memory Usage:  858 MB
 Total REAL time to MAP completion:  5 secs 
@@ -336,16 +334,16 @@ Device speed data version:  "PRODUCTION 1.23 2013-10-13".
 Device Utilization Summary:
 
 Slice Logic Utilization:
-  Number of Slice Registers:                    26 out of  11,440    1%
-    Number used as Flip Flops:                  26
+  Number of Slice Registers:                    27 out of  11,440    1%
+    Number used as Flip Flops:                  27
     Number used as Latches:                      0
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                         58 out of   5,720    1%
-    Number used as logic:                       57 out of   5,720    1%
+  Number of Slice LUTs:                         57 out of   5,720    1%
+    Number used as logic:                       56 out of   5,720    1%
       Number using O6 output only:              32
       Number using O5 output only:              23
-      Number using O5 and O6:                    2
+      Number using O5 and O6:                    1
       Number used as ROM:                        0
     Number used as Memory:                       0 out of   1,440    0%
     Number used exclusively as route-thrus:      1
@@ -354,11 +352,11 @@ Slice Logic Utilization:
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    16 out of   1,430    1%
+  Number of occupied Slices:                    18 out of   1,430    1%
   Number of MUXCYs used:                        28 out of   2,860    1%
   Number of LUT Flip Flop pairs used:           58
-    Number with an unused Flip Flop:            32 out of      58   55%
-    Number with an unused LUT:                   0 out of      58    0%
+    Number with an unused Flip Flop:            31 out of      58   53%
+    Number with an unused LUT:                   1 out of      58    1%
     Number of fully used LUT-FF pairs:          26 out of      58   44%
     Number of slice register sites lost
       to control set restrictions:               0 out of  11,440    0%
@@ -370,8 +368,8 @@ Slice Logic Distribution:
   over-mapped for a non-slice resource or if Placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                         3 out of     102    2%
-    Number of LOCed IOBs:                        3 out of       3  100%
+  Number of bonded IOBs:                         2 out of     102    1%
+    Number of LOCed IOBs:                        2 out of       2  100%
 
 Specific Feature Utilization:
   Number of RAMB16BWERs:                         0 out of      32    0%
@@ -408,11 +406,11 @@ Finished initial Timing Analysis.  REAL time: 2 secs
 Starting Router
 
 
-Phase  1  : 161 unrouted;      REAL time: 2 secs 
+Phase  1  : 155 unrouted;      REAL time: 2 secs 
 
-Phase  2  : 127 unrouted;      REAL time: 2 secs 
+Phase  2  : 121 unrouted;      REAL time: 2 secs 
 
-Phase  3  : 15 unrouted;      REAL time: 2 secs 
+Phase  3  : 15 unrouted;      REAL time: 3 secs 
 
 Phase  4  : 15 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
@@ -448,7 +446,7 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|         clock_BUFGP |  BUFGMUX_X2Y2| No   |    8 |  0.064     |  1.467      |
+|         clock_BUFGP |  BUFGMUX_X2Y2| No   |    9 |  0.068     |  1.461      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -468,8 +466,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_clock = PERIOD TIMEGRP "clock" 31.25 n | SETUP       |    27.428ns|     3.822ns|       0|           0
-  s HIGH 50%                                | HOLD        |     0.668ns|            |       0|           0
+  TS_clock = PERIOD TIMEGRP "clock" 31.25 n | SETUP       |    26.512ns|     4.738ns|       0|           0
+  s HIGH 50%                                | HOLD        |     0.455ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -483,7 +481,7 @@ All signals are completely routed.
 Total REAL time to PAR completion: 3 secs 
 Total CPU time to PAR completion: 3 secs 
 
-Peak Memory Usage:  594 MB
+Peak Memory Usage:  595 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
@@ -509,7 +507,7 @@ Loading device for application Rf_Device from file '6slx9.nph' in environment
 ebendanz/Projects/hwsec/xilinx_install/14.7/ISE_DS/ISE/.
    "pprov" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
 
-Analysis completed Thu Mar 23 11:59:19 2023
+Analysis completed Thu Mar 23 13:14:14 2023
 --------------------------------------------------------------------------------
 
 Generating Report ...
@@ -518,3 +516,10 @@ Number of warnings: 0
 Total time: 2 secs 
 
 Process "Generate Post-Place & Route Static Timing" completed successfully
+INFO:TclTasksC:1850 - process run : Generate Programming File is done.
+
+Started : "Generate Programming File".
+Running bitgen...
+Command Line: bitgen -intstyle ise -f pprov.ut pprov.ncd
+
+Process "Generate Programming File" completed successfully

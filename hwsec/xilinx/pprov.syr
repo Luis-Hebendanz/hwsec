@@ -116,7 +116,7 @@ Parsing module <pprov>.
 =========================================================================
 
 Elaborating module <pprov>.
-WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 33: Result of 26-bit expression is truncated to fit in 25-bit target.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 32: Result of 26-bit expression is truncated to fit in 25-bit target.
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -124,13 +124,13 @@ WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v"
 
 Synthesizing Unit <pprov>.
     Related source file is "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v".
+    Found 1-bit register for signal <led>.
     Found 25-bit register for signal <cnt>.
     Found 1-bit register for signal <toggle>.
-    Found 25-bit adder for signal <cnt[24]_GND_1_o_add_2_OUT> created at line 33.
+    Found 25-bit adder for signal <cnt[24]_GND_1_o_add_2_OUT> created at line 32.
     Summary:
 	inferred   1 Adder/Subtractor(s).
-	inferred  26 D-type flip-flop(s).
-	inferred   1 Multiplexer(s).
+	inferred  27 D-type flip-flop(s).
 Unit <pprov> synthesized.
 
 =========================================================================
@@ -139,11 +139,9 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  25-bit adder                                          : 1
-# Registers                                            : 2
- 1-bit register                                        : 1
+# Registers                                            : 3
+ 1-bit register                                        : 2
  25-bit register                                       : 1
-# Multiplexers                                         : 1
- 1-bit 2-to-1 multiplexer                              : 1
 
 =========================================================================
 
@@ -162,8 +160,8 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # Counters                                             : 1
  25-bit up counter                                     : 1
-# Registers                                            : 1
- Flip-Flops                                            : 1
+# Registers                                            : 2
+ Flip-Flops                                            : 2
 
 =========================================================================
 
@@ -183,8 +181,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 26
- Flip-Flops                                            : 26
+# Registers                                            : 27
+ Flip-Flops                                            : 27
 
 =========================================================================
 
@@ -207,23 +205,22 @@ Top Level Output File Name         : pprov.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 110
+# BELS                             : 108
 #      GND                         : 1
-#      INV                         : 1
+#      INV                         : 2
 #      LUT1                        : 24
-#      LUT2                        : 26
-#      LUT3                        : 1
+#      LUT2                        : 25
 #      LUT5                        : 1
-#      LUT6                        : 6
+#      LUT6                        : 5
 #      MUXCY                       : 24
 #      VCC                         : 1
 #      XORCY                       : 25
-# FlipFlops/Latches                : 26
-#      FD                          : 26
+# FlipFlops/Latches                : 27
+#      FD                          : 25
+#      FDE                         : 2
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 2
-#      IBUF                        : 1
+# IO Buffers                       : 1
 #      OBUF                        : 1
 
 Device utilization summary:
@@ -233,20 +230,20 @@ Selected Device : 6slx9tqg144-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              26  out of  11440     0%  
- Number of Slice LUTs:                   59  out of   5720     1%  
-    Number used as Logic:                59  out of   5720     1%  
+ Number of Slice Registers:              27  out of  11440     0%  
+ Number of Slice LUTs:                   57  out of   5720     0%  
+    Number used as Logic:                57  out of   5720     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     59
-   Number with an unused Flip Flop:      33  out of     59    55%  
-   Number with an unused LUT:             0  out of     59     0%  
-   Number of fully used LUT-FF pairs:    26  out of     59    44%  
-   Number of unique control sets:         1
+ Number of LUT Flip Flop pairs used:     58
+   Number with an unused Flip Flop:      31  out of     58    53%  
+   Number with an unused LUT:             1  out of     58     1%  
+   Number of fully used LUT-FF pairs:    26  out of     58    44%  
+   Number of unique control sets:         2
 
 IO Utilization: 
- Number of IOs:                           3
- Number of bonded IOBs:                   3  out of    102     2%  
+ Number of IOs:                           2
+ Number of bonded IOBs:                   2  out of    102     1%  
 
 Specific Feature Utilization:
  Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
@@ -272,7 +269,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clock                              | BUFGP                  | 26    |
+clock                              | BUFGP                  | 27    |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -283,10 +280,10 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 4.657ns (Maximum Frequency: 214.731MHz)
+   Minimum period: 4.646ns (Maximum Frequency: 215.239MHz)
    Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: 5.242ns
-   Maximum combinational path delay: 5.857ns
+   Maximum output required time after clock: 4.118ns
+   Maximum combinational path delay: No path found
 
 Timing Details:
 ---------------
@@ -294,10 +291,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 4.657ns (frequency: 214.731MHz)
-  Total number of paths / destination ports: 977 / 26
+  Clock period: 4.646ns (frequency: 215.239MHz)
+  Total number of paths / destination ports: 1002 / 29
 -------------------------------------------------------------------------
-Delay:               4.657ns (Levels of Logic = 3)
+Delay:               4.646ns (Levels of Logic = 3)
   Source:            cnt_21 (FF)
   Destination:       cnt_0 (FF)
   Source Clock:      clock rising
@@ -308,52 +305,32 @@ Delay:               4.657ns (Levels of Logic = 3)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FD:C->Q               2   0.525   1.156  cnt_21 (cnt_21)
-     LUT5:I0->O            3   0.254   1.042  GND_1_o_GND_1_o_equal_2_o<24>2 (GND_1_o_GND_1_o_equal_2_o<24>1)
-     LUT6:I2->O           13   0.254   1.098  GND_1_o_GND_1_o_equal_2_o<24>5 (GND_1_o_GND_1_o_equal_2_o)
+     LUT5:I0->O            2   0.254   1.002  GND_1_o_GND_1_o_equal_2_o<24>2 (GND_1_o_GND_1_o_equal_2_o<24>1)
+     LUT6:I2->O           14   0.254   1.127  GND_1_o_GND_1_o_equal_2_o<24>5 (GND_1_o_GND_1_o_equal_2_o)
      LUT2:I1->O            1   0.254   0.000  cnt_0_rstpot (cnt_0_rstpot)
      FD:D                      0.074          cnt_0
     ----------------------------------------
-    Total                      4.657ns (1.361ns logic, 3.296ns route)
-                                       (29.2% logic, 70.8% route)
+    Total                      4.646ns (1.361ns logic, 3.285ns route)
+                                       (29.3% logic, 70.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clock'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
-Offset:              5.242ns (Levels of Logic = 2)
-  Source:            toggle (FF)
+Offset:              4.118ns (Levels of Logic = 1)
+  Source:            led (FF)
   Destination:       led (PAD)
   Source Clock:      clock rising
 
-  Data Path: toggle to led
+  Data Path: led to led
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               3   0.525   0.874  toggle (toggle)
-     LUT2:I0->O            1   0.250   0.681  Mmux_led11 (led_OBUF)
+     FDE:C->Q              1   0.525   0.681  led (led_OBUF)
      OBUF:I->O                 2.912          led_OBUF (led)
     ----------------------------------------
-    Total                      5.242ns (3.687ns logic, 1.555ns route)
-                                       (70.3% logic, 29.7% route)
-
-=========================================================================
-Timing constraint: Default path analysis
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Delay:               5.857ns (Levels of Logic = 3)
-  Source:            button (PAD)
-  Destination:       led (PAD)
-
-  Data Path: button to led
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             1   1.328   0.682  button_IBUF (button_IBUF)
-     LUT2:I1->O            1   0.254   0.681  Mmux_led11 (led_OBUF)
-     OBUF:I->O                 2.912          led_OBUF (led)
-    ----------------------------------------
-    Total                      5.857ns (4.494ns logic, 1.363ns route)
-                                       (76.7% logic, 23.3% route)
+    Total                      4.118ns (3.437ns logic, 0.681ns route)
+                                       (83.5% logic, 16.5% route)
 
 =========================================================================
 
@@ -365,19 +342,19 @@ Clock to Setup on destination clock clock
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clock          |    4.657|         |         |         |
+clock          |    4.646|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 3.52 secs
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 4.06 secs
  
 --> 
 
 
-Total memory usage is 588604 kilobytes
+Total memory usage is 588596 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    1 (   0 filtered)

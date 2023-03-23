@@ -1,14 +1,13 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Thu Mar 23 11:59:04 2023
+// Written by: Map P.20131013 on Thu Mar 23 13:13:56 2023
 //! **************************************************************************
 
 SCHEMATIC START;
 COMP "led" LOCATE = SITE "P112" LEVEL 1;
-COMP "button" LOCATE = SITE "P114" LEVEL 1;
 COMP "clock" LOCATE = SITE "P94" LEVEL 1;
-TIMEGRP clock = BEL "toggle" BEL "cnt_0" BEL "cnt_1" BEL "cnt_2" BEL "cnt_3"
-        BEL "cnt_4" BEL "cnt_5" BEL "cnt_6" BEL "cnt_7" BEL "cnt_8" BEL
-        "cnt_9" BEL "cnt_10" BEL "cnt_11" BEL "cnt_12" BEL "cnt_13" BEL
+TIMEGRP clock = BEL "toggle" BEL "led" BEL "cnt_0" BEL "cnt_1" BEL "cnt_2" BEL
+        "cnt_3" BEL "cnt_4" BEL "cnt_5" BEL "cnt_6" BEL "cnt_7" BEL "cnt_8"
+        BEL "cnt_9" BEL "cnt_10" BEL "cnt_11" BEL "cnt_12" BEL "cnt_13" BEL
         "cnt_14" BEL "cnt_15" BEL "cnt_16" BEL "cnt_17" BEL "cnt_18" BEL
         "cnt_19" BEL "cnt_20" BEL "cnt_21" BEL "cnt_22" BEL "cnt_23" BEL
         "cnt_24" BEL "clock_BUFGP/BUFG";
