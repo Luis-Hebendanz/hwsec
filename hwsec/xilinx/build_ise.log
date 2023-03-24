@@ -1,6 +1,11 @@
 INFO:HDLCompiler:1845 - Analyzing Verilog file
    "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" into library work
 INFO:ProjectMgmt - Parsing design hierarchy completed successfully.
+WARNING:ProjectMgmt - File
+   /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.stx is missing.
+WARNING:ProjectMgmt - File
+   /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.stx is missing.
+INFO:TclTasksC:1850 - process run : Synthesize - XST is done.
 
 Started : "Synthesize - XST".
 Running xst...
@@ -12,514 +17,129 @@ Reading design: pprov.prj
 =========================================================================
 Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" into library work
 Parsing module <pprov>.
-
-=========================================================================
-*                            HDL Elaboration                            *
-=========================================================================
-
-Elaborating module <pprov>.
-WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 32: Result of 26-bit expression is truncated to fit in 25-bit target.
-
-=========================================================================
-*                           HDL Synthesis                               *
-=========================================================================
-
-Synthesizing Unit <pprov>.
-    Related source file is "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v".
-    Found 1-bit register for signal <led>.
-    Found 25-bit register for signal <cnt>.
-    Found 1-bit register for signal <toggle>.
-    Found 25-bit adder for signal <cnt[24]_GND_1_o_add_2_OUT> created at line 32.
-    Summary:
-	inferred   1 Adder/Subtractor(s).
-	inferred  27 D-type flip-flop(s).
-Unit <pprov> synthesized.
-
-=========================================================================
-HDL Synthesis Report
-
-Macro Statistics
-# Adders/Subtractors                                   : 1
- 25-bit adder                                          : 1
-# Registers                                            : 3
- 1-bit register                                        : 2
- 25-bit register                                       : 1
-
-=========================================================================
-
-=========================================================================
-*                       Advanced HDL Synthesis                          *
-=========================================================================
+ERROR:HDLCompiler:69 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 65: <A> is not declared.
+ERROR:HDLCompiler:598 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 8: Module <pprov> ignored due to previous errors.
+Verilog file /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v ignored due to errors
+--> 
 
 
-Synthesizing (advanced) Unit <pprov>.
-The following registers are absorbed into counter <cnt>: 1 register on signal <cnt>.
-Unit <pprov> synthesized (advanced).
+Total memory usage is 512148 kilobytes
 
-=========================================================================
-Advanced HDL Synthesis Report
+Number of errors   :    2 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
 
-Macro Statistics
-# Counters                                             : 1
- 25-bit up counter                                     : 1
-# Registers                                            : 2
- Flip-Flops                                            : 2
 
-=========================================================================
-
-=========================================================================
-*                         Low Level Synthesis                           *
-=========================================================================
-
-Optimizing unit <pprov> ...
-
-Mapping all equations...
-Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block pprov, actual ratio is 0.
-
-Final Macro Processing ...
-
-=========================================================================
-Final Register Report
-
-Macro Statistics
-# Registers                                            : 27
- Flip-Flops                                            : 27
-
-=========================================================================
-
-=========================================================================
-*                           Partition Report                            *
-=========================================================================
-
-Partition Implementation Status
--------------------------------
-
-  No Partitions were found in this design.
-
--------------------------------
-
-========================================================INFO:TclTasksC:1850 - process run : Synthesize - XST is done.
-=================
-*                            Design Summary                             *
-=========================================================================
-
-Clock Information:
-------------------
------------------------------------+------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)  | Load  |
------------------------------------+------------------------+-------+
-clock                              | BUFGP                  | 27    |
------------------------------------+------------------------+-------+
-
-Asynchronous Control Signals Information:
-----------------------------------------
-No asynchronous control signals found in this design
-
-Timing Summary:
----------------
-Speed Grade: -2
-
-   Minimum period: 4.646ns (Maximum Frequency: 215.239MHz)
-   Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: 4.118ns
-   Maximum combinational path delay: No path found
-
-=========================================================================
-
-Process "Synthesize - XST" completed successfully
+Process "Synthesize - XST" failed
+WARNING:ProjectMgmt - File
+   /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.stx is missing.
 INFO:TclTasksC:1850 - process run : Translate is done.
 
-Started : "Translate".
-Running ngdbuild...
-Command Line: ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pprov.ucf -p xc6slx9-tqg144-2 pprov.ngc pprov.ngd
-
-Command Line:
-/home/lhebendanz/Projects/hwsec/xilinx_install/14.7/ISE_DS/ISE/bin/lin64/unwrapp
-ed/ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pprov.ucf -p
-xc6slx9-tqg144-2 pprov.ngc pprov.ngd
-
-Reading NGO file "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.ngc" ...
-Gathering constraint information from source properties...
-Done.
-
-Annotating constraints to design from ucf file "pprov.ucf" ...
-Resolving constraint associations...
-Checking Constraint Associations...
-Done...
-
-Checking expanded design ...
-
-Partition Implementation Status
--------------------------------
-
-  No Partitions were found in this design.
-
--------------------------------
-
-NGDBUILD Design Results Summary:
-  Number of errors:     0
-  Number of warnings:   0
-
-Writing NGD file "pprov.ngd" ...
-Total REAL time to NGDBUILD completion:  1 sec
-Total CPU time to NGDBUILD completion:   1 sec
-
-Writing NGDBUILD log file "pprov.bld"...
-
-NGDBUILD done.
-
-Process "Translate" completed successfully
-
-Started : "Map".
-Running map...
-Command Line: map -intstyle ise -p xc6slx9-tqg144-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o pprov_map.ncd pprov.ngd pprov.pcf
-Using target part "6slx9tqg144-2".
-Mapping design into LUTs...
-Running directed packing...
-Running delay-based LUT packing...
-Updating timing models...
-INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
-   (.mrp).
-Running timing-driven placement...
-Total REAL time at the beginning of Placer: 3 secs 
-Total CPU  time at the beginning of Placer: 3 secs 
-
-Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:a261ce44) REAL time: 3 secs 
-
-Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:a261ce44) REAL time: 3 secs 
-
-Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:a261ce44) REAL time: 3 secs 
-
-Phase 4.2  Initial Placement for Architecture Specific Features
-
-Phase 4.2  Initial Placement for Architecture Specific Features
-(Checksum:856e4950) REAL time: 4 secs 
-
-Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:856e4950) REAL time: 4 secs 
-
-Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:856e4950) REAL time: 4 secs 
-
-Phase 7.3  Local Placement Optimization
-Phase 7.3  Local Placement Optimization (Checksum:856e4950) REAL time: 4 secs 
-
-Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:856e4950) REAL time: 4 secs 
-
-Phase 9.8  Global Placement
-...
-...
-Phase 9.8  Global Placement (Checksum:70591cf0) REAL time: 4 secs 
-
-Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:70591cf0) REAL time: 4 secs 
-
-Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:da3abc60) REAL time: 4 secs 
-
-Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:da3abc60) REAL time: 4 secs 
-
-Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:da3abc60) REAL time: 4 secs 
-
-Total REAL time to Placer completion: 5 secs 
-Total CPU  time to Placer completion: 4 secs 
-Running post-placement packing...
-Writing output files...
-
-Design Summary:
-Number of errors:      0
-Number of warnings:    0
-Slice Logic Utilization:
-  Number of Slice Registers:                    27 out of  11,440    1%
-    Number used as Flip Flops:                  27
-    Number used as Latches:                      0
-    Number used as Latch-thrus:                  0
-    Number used as AND/OR logics:                0
-  Number of Slice LUTs:                         57 out of   5,720    1%
-    Number used as logic:                       56 out of   5,720    1%
-      Number using O6 output only:              32
-      Number using O5 output only:              23
-      Number using O5 and O6:                    1
-      Number used as ROM:                        0
-    Number used as Memory:                       0 out of   1,440    0%
-    Number used exclusively as route-thrus:      1
-      Number with same-slice register load:      0
-      Number with same-slice carry load:         1
-      Number with other load:                    0
-
-Slice Logic Distribution:
-  Number of occupied Slices:                    18 out of   1,430    1%
-  Number of MUXCYs used:                        28 out of   2,860    1%
-  Number of LUT Flip Flop pairs used:           58
-    Number with an unused Flip Flop:            31 out of      58   53%
-    Number with an unused LUT:                   1 out of      58    1%
-    Number of fully used LUT-FF pairs:          26 out of      58   44%
-    Number of unique control sets:               2
-    Number of slice register sites lost
-      to control set restrictions:              13 out of  11,440    1%
-
-  A LUT Flip Flop pair for this architecture represents one LUT paired with
-  one Flip Flop within a slice.  A control set is a unique combinatioINFO:TclTasksC:1850 - process run : Map is done.
-n of
-  clock, reset, set, and enable signals for a registered element.
-  The Slice Logic Distribution report is not meaningful if the design is
-  over-mapped for a non-slice resource or if Placement fails.
-
-IO Utilization:
-  Number of bonded IOBs:                         2 out of     102    1%
-    Number of LOCed IOBs:                        2 out of       2  100%
-
-Specific Feature Utilization:
-  Number of RAMB16BWERs:                         0 out of      32    0%
-  Number of RAMB8BWERs:                          0 out of      64    0%
-  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
-  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
-  Number of BUFG/BUFGMUXs:                       1 out of      16    6%
-    Number used as BUFGs:                        1
-    Number used as BUFGMUX:                      0
-  Number of DCM/DCM_CLKGENs:                     0 out of       4    0%
-  Number of ILOGIC2/ISERDES2s:                   0 out of     200    0%
-  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     200    0%
-  Number of OLOGIC2/OSERDES2s:                   0 out of     200    0%
-  Number of BSCANs:                              0 out of       4    0%
-  Number of BUFHs:                               0 out of     128    0%
-  Number of BUFPLLs:                             0 out of       8    0%
-  Number of BUFPLL_MCBs:                         0 out of       4    0%
-  Number of DSP48A1s:                            0 out of      16    0%
-  Number of ICAPs:                               0 out of       1    0%
-  Number of MCBs:                                0 out of       2    0%
-  Number of PCILOGICSEs:                         0 out of       2    0%
-  Number of PLL_ADVs:                            0 out of       2    0%
-  Number of PMVs:                                0 out of       1    0%
-  Number of STARTUPs:                            0 out of       1    0%
-  Number of SUSPEND_SYNCs:                       0 out of       1    0%
-
-Average Fanout of Non-Clock Nets:                1.88
-
-Peak Memory Usage:  858 MB
-Total REAL time to MAP completion:  5 secs 
-Total CPU time to MAP completion:   5 secs 
-
-Mapping completed.
-See MAP report file "pprov_map.mrp" for details.
-
-Process "Map" completed successfully
-
-Started : "Place & Route".
-Running par...
-Command Line: par -w -intstyle ise -ol high -mt off pprov_map.ncd pprov.ncd pprov.pcf
-
-
-
-Constraints file: pprov.pcf.
-Loading device for application Rf_Device from file '6slx9.nph' in environment
-/home/lhebendanz/Projects/hwsec/xilinx_install/14.7/ISE_DS/ISE/.
-   "pprov" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
-
-Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
-Initializing voltage to 1.140 Volts. (default - Range: 1.140 to 1.260 Volts)
-
-
-Device speed data version:  "PRODUCTION 1.23 2013-10-13".
-
-
-
-Device Utilization Summary:
-
-Slice Logic Utilization:
-  Number of Slice Registers:                    27 out of  11,440    1%
-    Number used as Flip Flops:                  27
-    Number used as Latches:                      0
-    Number used as Latch-thrus:                  0
-    Number used as AND/OR logics:                0
-  Number of Slice LUTs:                         57 out of   5,720    1%
-    Number used as logic:                       56 out of   5,720    1%
-      Number using O6 output only:              32
-      Number using O5 output only:              23
-      Number using O5 and O6:                    1
-      Number used as ROM:                        0
-    Number used as Memory:                       0 out of   1,440    0%
-    Number used exclusively as route-thrus:      1
-      Number with same-slice register load:      0
-      Number with same-slice carry load:         1
-      Number with other load:                    0
-
-Slice Logic Distribution:
-  Number of occupied Slices:                    18 out of   1,430    1%
-  Number of MUXCYs used:                        28 out of   2,860    1%
-  Number of LUT Flip Flop pairs used:           58
-    Number with an unused Flip Flop:            31 out of      58   53%
-    Number with an unused LUT:                   1 out of      58    1%
-    Number of fully used LUT-FF pairs:          26 out of      58   44%
-    Number of slice register sites lost
-      to control set restrictions:               0 out of  11,440    0%
-
-  A LUT Flip Flop pair for this architecture represents one LUT paired with
-  one Flip Flop within a slice.  A control set is a unique combination of
-  clock, reset, set, and enable signals for a registered element.
-  The Slice Logic Distribution report is not meaningful if the design is
-  over-mapped for a non-slice resource or if Placement fails.
-
-IO Utilization:
-  Number of bonded IOBs:                         2 out of     102    1%
-    Number of LOCed IOBs:                        2 out of       2  100%
-
-Specific Feature Utilization:
-  Number of RAMB16BWERs:                         0 out of      32    0%
-  Number of RAMB8BWERs:                          0 out of      64    0%
-  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
-  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
-  Number of BUFG/BUFGMUXs:                       1 out of      16    6%
-    Number used as BUFGs:                        1
-    Number used as BUFGMUX:                      0
-  Number of DCM/DCM_CLKGENs:                     0 out of       4    0%
-  Number of ILOGIC2/ISERDES2s:                   0 out of     200    0%
-  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     200    0%
-  Number of OLOGIC2/OSERDES2s:                   0 out of     200    0%
-  Number of BSCANs:                              0 out of       4    0%
-  Number of BUFHs:                               0 out of     128    0%
-  Number of BUFPLLs:                             0 out of       8    0%
-  Number of BUFPLL_MCBs:                         0 out of       4    0%
-  Number of DSP48A1s:                            0 out of      16    0%
-  Number of ICAPs:                               0 out of       1    0%
-  Number of MCBs:                                0 out of       2    0%
-  Number of PCILOGICSEs:                         0 out of       2    0%
-  Number of PLL_ADVs:                            0 out of       2    0%
-  Number of PMVs:                                0 out of       1    0%
-  Number of STARTUPs:                            0 out of       1    0%
-  Number of SUSPEND_SYNCs:                       0 out of       1    0%
-
-
-Overall effort level (-ol):   High 
-Router effort level (-rl):    High 
-
-Starting initial Timing Analysis.  REAL time: 2 secs 
-Finished initial Timing Analysis.  REAL time: 2 secs 
-
-Starting Router
-
-
-Phase  1  : 155 unrouted;      REAL time: 2 secs 
-
-Phase  2  : 121 unrouted;      REAL time: 2 secs 
-
-Phase  3  : 15 unrouted;      REAL time: 3 secs 
-
-Phase  4  : 15 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-
-Updating file: pprov.ncd with current fully routed design.
-
-Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-
-Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-
-Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-
-Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-
-Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-Total REAL time to Router completion: 3 secs 
-Total CPU time to Router completion: 3 secs 
-
-Partition Implementation Status
--------------------------------
-
-  No Partitions were found in this design.
-
--------------------------------
-
-Generating "PAR" statistics.
-
-**************************
-Generating Clock Report
-**************************
-
-+---------------------+--------------+------+------+------------+-------------+
-|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
-+---------------------+--------------+------+------+------------+-------------+
-|         clock_BUFGP |  BUFGMUX_X2Y2| No   |    9 |  0.068     |  1.461      |
-+---------------------+--------------+------+------+------------+-------------+
-
-* Net Skew is the difference between the minimum and maximum routing
-only delays for the net. Note this is different from Clock Skew which
-is reported in TRCE timing report. Clock Skew is the difference between
-the minimum and maximum path delays which includes logic delays.
-
-* The fanout is the number of component pins not the individual BEL loads,
-for example SLICE loads not FF loads.
-
-Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
-
-Asterisk (*) preceding a constraint indicates it was not met.
-   This may be due to a setup or hold violation.
-
-----------------------------------------------------------------------------------------------------------
-  Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
-                                            |             |    Slack   | Achievable | Errors |    Score   
-----------------------------------------------------------------------------------------------------------
-  TS_clock = PERIOD TIMEGRP "clock" 31.25 n | SETUP       |    26.512ns|     4.738ns|       0|           0
-  s HIGH 50%                                | HOLD        |     0.455ns|            |       0|           0
-----------------------------------------------------------------------------------------------------------
-
-
-All constraints were met.
-
-
-Generating Pad Report.
-
-All signals are completely routed.
-
-Total REAL time to PAR completion: 3 secs 
-Total CPU time to PAR completion: 3 secs 
-
-Peak Memory Usage:  595 MB
-
-Placer: Placement generated during map.
-Routing: Completed - No errors found.
-Timing: Completed - No errors found.
-
-Number of error messages: 0
-Number of warning messages: 0
-Number of info messages: 0
-
-Writing design to file pprov.ncd
-
-
-
-PAR done!
-
-Process "Place & Route" completed successfully
-
-Started : "Generate Post-Place & Route Static Timing".
-Running trce...
-Command Line: trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml pprov.twx pprov.ncd -o pprov.twr pprov.pcf -ucf pprov.ucf
-Loading device for application Rf_Device from file '6slx9.nph' in environment
-/home/lhINFO:TclTasksC:1850 - process run : Place & Route is done.
-ebendanz/Projects/hwsec/xilinx_install/14.7/ISE_DS/ISE/.
-   "pprov" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
-
-Analysis completed Thu Mar 23 13:14:14 2023
---------------------------------------------------------------------------------
-
-Generating Report ...
-
-Number of warnings: 0
-Total time: 2 secs 
-
-Process "Generate Post-Place & Route Static Timing" completed successfully
+Started : "Synthesize - XST".
+Running xst...
+Command Line: xst -intstyle ise -ifn "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.xst" -ofn "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.syr"
+Reading design: pprov.prj
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" into library work
+Parsing module <pprov>.
+ERROR:HDLCompiler:69 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 65: <A> is not declared.
+ERROR:HDLCompiler:598 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 8: Module <pprov> ignored due to previous errors.
+Verilog file /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v ignored due to errors
+--> 
+
+
+Total memory usage is 512144 kilobytes
+
+Number of errors   :    2 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
+
+Process "Synthesize - XST" failed
+WARNING:ProjectMgmt - File
+   /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.stx is missing.
+INFO:TclTasksC:1850 - process run : Map is done.
+
+Started : "Synthesize - XST".
+Running xst...
+Command Line: xst -intstyle ise -ifn "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.xst" -ofn "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.syr"
+Reading design: pprov.prj
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" into library work
+Parsing module <pprov>.
+ERROR:HDLCompiler:69 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 65: <A> is not declared.
+ERROR:HDLCompiler:598 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 8: Module <pprov> ignored due to previous errors.
+Verilog file /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v ignored due to errors
+--> 
+
+
+Total memory usage is 512144 kilobytes
+
+Number of errors   :    2 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
+
+Process "Synthesize - XST" failed
+WARNING:ProjectMgmt - File
+   /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.stx is missing.
+INFO:TclTasksC:1850 - process run : Place & Route is done.
+
+Started : "Synthesize - XST".
+Running xst...
+Command Line: xst -intstyle ise -ifn "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.xst" -ofn "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.syr"
+Reading design: pprov.prj
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" into library work
+Parsing module <pprov>.
+ERROR:HDLCompiler:69 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 65: <A> is not declared.
+ERROR:HDLCompiler:598 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 8: Module <pprov> ignored due to previous errors.
+Verilog file /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v ignored due to errors
+--> 
+
+
+Total memory usage is 512148 kilobytes
+
+Number of errors   :    2 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
+
+Process "Synthesize - XST" failed
+WARNING:ProjectMgmt - File
+   /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.stx is missing.
 INFO:TclTasksC:1850 - process run : Generate Programming File is done.
 
-Started : "Generate Programming File".
-Running bitgen...
-Command Line: bitgen -intstyle ise -f pprov.ut pprov.ncd
+Started : "Synthesize - XST".
+Running xst...
+Command Line: xst -intstyle ise -ifn "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.xst" -ofn "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.syr"
+Reading design: pprov.prj
 
-Process "Generate Programming File" completed successfully
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" into library work
+Parsing module <pprov>.
+ERROR:HDLCompiler:69 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 65: <A> is not declared.
+ERROR:HDLCompiler:598 - "/home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v" Line 8: Module <pprov> ignored due to previous errors.
+Verilog file /home/lhebendanz/Projects/hwsec/hwsec/xilinx/pprov.v ignored due to errors
+--> 
+
+
+Total memory usage is 512152 kilobytes
+
+Number of errors   :    2 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
+
+Process "Synthesize - XST" failed

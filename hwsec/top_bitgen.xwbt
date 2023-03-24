@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=/home/lhebendanz/Projects/hwsec/ex1/top.ncd
-OUTFILE=/home/lhebendanz/Projects/hwsec/ex1/top.bit
+INFILE=/home/lhebendanz/Projects/hwsec/hwsec/top.ncd
+OUTFILE=/home/lhebendanz/Projects/hwsec/hwsec/top.bit
 FAMILY=Spartan6
 PART=xc6slx9-2tqg144
-WORKINGDIR=/home/lhebendanz/Projects/hwsec/ex1
+WORKINGDIR=/home/lhebendanz/Projects/hwsec/hwsec
 LICENSE=WebPack
 USER_INFO=212677609_0_0_939

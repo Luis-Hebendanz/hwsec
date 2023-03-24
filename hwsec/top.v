@@ -15,11 +15,11 @@ module top(
 	 input wire RX,
 	 output wire TX,
 	 output reg LED1,
-	 output reg A4, // Reset
+	 output reg A4 // Reset
 	 
 	 // Gold
-	 input wire A1, // TXD
-	 output wire A0 // RXD
+	 //input wire A1, // TXD
+	// output wire A0 // RXD
 	 
     );
 // Globals
@@ -28,28 +28,28 @@ reg rst = 0;
 
 
 // ==== Gold Board =====
-wire gold_valid;
-wire [7:0] gold_data_rx;
-
-uart_rx_sol gold_recv (
-	.clk(CLK), 
-	.rst(rst), 
-	.din(A1), 
-	.valid(gold_valid), // Set when received data is valid
-	.data_out(gold_data_rx)
-);
-
-reg gold_en;
-reg [7:0] gold_data_tx;
-wire gold_rdy;
-uart_tx_sol gold_tx (
-	.clk(CLK),
-	.rst(rst),
-	.en(gold_en), // Enable bit (only set when rdy bit set)
-	.data_in(gold_data_tx), // Data to transmit
-	.rdy(gold_rdy), // Set when transmitter is ready to send again
-	.dout(A0)
-);
+//wire gold_valid;
+//wire [7:0] gold_data_rx;
+//
+//uart_rx_sol gold_recv (
+//	.clk(CLK), 
+//	.rst(rst), 
+//	.din(A1), 
+//	.valid(gold_valid), // Set when received data is valid
+//	.data_out(gold_data_rx)
+//);
+//
+//reg gold_en;
+//reg [7:0] gold_data_tx;
+//wire gold_rdy;
+//uart_tx_sol gold_tx (
+//	.clk(CLK),
+//	.rst(rst),
+//	.en(gold_en), // Enable bit (only set when rdy bit set)
+//	.data_in(gold_data_tx), // Data to transmit
+//	.rdy(gold_rdy), // Set when transmitter is ready to send again
+//	.dout(A0)
+//);
 
 
 // ======== FPGA Uart ========
@@ -87,7 +87,7 @@ reg [2:0] state = IDLE;
 reg [7:0] gold_buf [0:15];
 
 // Counters
-reg [7:0] gold_cnt_set = 8'b0;
+//reg [7:0] gold_cnt_set = 8'b0;
 reg [7:0] gold_cnt_get = 8'b0;
 integer i;
 
@@ -104,29 +104,29 @@ always @(posedge CLK)
 begin
 
 en 			  	<= 0; // disable fpga transmitter
-gold_en 			<= 0; // disable gold transmitter
+//gold_en 			<= 0; // disable gold transmitter
 A4 				<= 1; // reset is high so no reset
 LED1 				<= 0; // Disable LED
-gold_cnt_set 	<= gold_cnt_set;
+//gold_cnt_set 	<= gold_cnt_set;
 gold_cnt_get 	<= gold_cnt_get;
 state 			<= state;
 data_tx 			<= data_tx;
-gold_data_tx 	<= gold_data_tx;
+//gold_data_tx 	<= gold_data_tx;
 rst 				<= rst;
 
 case(state)
-SET_PWD: begin
-	if(gold_cnt_set < 16) // if cnt smaller then buf size
-	begin
-		if(valid) // received data from pc
-		begin
-			gold_buf[gold_cnt_set] <= data_rx;
-			gold_cnt_set <= gold_cnt_set +1;
-		end
-	end else begin
-		state <= IDLE;
-	end
-end
+//SET_PWD: begin
+//	if(gold_cnt_set < 16) // if cnt smaller then buf size
+//	begin
+//		if(valid) // received data from pc
+//		begin
+//			gold_buf[gold_cnt_set] <= data_rx;
+//			gold_cnt_set <= gold_cnt_set +1;
+//		end
+//	end else begin
+//		state <= IDLE;
+//	end
+//end
 
 GET_PWD: begin
 	if(rdy) // if fpga transmitter ready
@@ -134,7 +134,11 @@ GET_PWD: begin
 		data_tx 			<= gold_buf[gold_cnt_get];
 		gold_cnt_get 	<= gold_cnt_get + 1;
 		en 				<= 1'b1;
-		state 			<= gold_cnt_get >= 8'd15 ? IDLE : GET_PWD;
+		
+		if(gold_cnt_get >= 15)
+		begin
+			state <= IDLE;
+		end
 	end
 end
 
@@ -147,10 +151,10 @@ IDLE: begin
 			"t": begin
 				LED1 <= ~LED1; // Toggle LED1
 			end
-			"s": begin
-				gold_cnt_set <= 0;
-				state <= SET_PWD;
-			end
+//			"s": begin
+//				gold_cnt_set <= 0;
+//				state <= SET_PWD;
+//			end
 			"g": begin
 				gold_cnt_get <= 0;
 				state <= GET_PWD;

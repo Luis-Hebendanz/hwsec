@@ -2,11 +2,11 @@ Release 14.7 ngdbuild P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 Command Line:
-/home/lhebendanz/Downloads/nix-environments/envs/xilinx-vitis/xilinx_install/14.
-7/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild -intstyle ise -dd _ngo -nt timestamp
--uc papilio_pro.ucf -p xc6slx9-tqg144-2 top.ngc top.ngd
+/home/lhebendanz/Projects/hwsec/xilinx_install/14.7/ISE_DS/ISE/bin/lin64/unwrapp
+ed/ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc papilio_pro.ucf -p
+xc6slx9-tqg144-2 top.ngc top.ngd
 
-Reading NGO file "/home/lhebendanz/Projects/hwsec/ex1/top.ngc" ...
+Reading NGO file "/home/lhebendanz/Projects/hwsec/hwsec/top.ngc" ...
 Gathering constraint information from source properties...
 Done.
 
@@ -32,7 +32,7 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 607888 kilobytes
+Total memory usage is 607440 kilobytes
 
 Writing NGD file "top.ngd" ...
 Total REAL time to NGDBUILD completion:  2 sec

@@ -9,10 +9,18 @@ from pprint import pprint
 from rhea.build.boards import get_board
 from myhdl import (Signal, ResetSignal, intbv, always_seq, always,
                    always_comb)
-from rhea import Global, Clock, Reset
 import myhdl
 import argparse
 
+## Added
+from rhea.cores.uart import uartbase
+from rhea.cores.memmap import command_bridge
+from rhea.cores.misc import glbl_timer_ticks, syncro
+from rhea import Global, Clock, Reset
+from rhea.system import Barebone
+from rhea.system import FIFOBus
+from rhea.build.boards import get_board
+from rhea.cores.fifo import fifo_fast
 
 
 led_port_pin_map = {
@@ -21,7 +29,7 @@ led_port_pin_map = {
 
 
 @myhdl.block
-def ppro_blinky(led, clock, reset=None):
+def ppro_blinky(led, clock, uart_tx, reset=None):
     """ a simple LED blinks example.
     This is intended to be used with the Xula, Stickit motherboard
     and an LED  pmod board.
@@ -31,7 +39,7 @@ def ppro_blinky(led, clock, reset=None):
     toggle = Signal(bool(0))
 
     @always_seq(clock.posedge, reset=None)
-    def beh():
+    def blink():
         if cnt == maxcnt-1:
             toggle.next = not toggle
             led.next = toggle
@@ -39,7 +47,33 @@ def ppro_blinky(led, clock, reset=None):
         else:
             cnt.next = cnt + 1
 
-    return beh
+
+    glbl = Global(clock, reset)
+
+    # create the interfaces to the UART
+    fifobus = FIFOBus(width=8)
+    baudce, baudce16 = [Signal(bool(0)) for _ in range(2)]
+    tx = Signal(bool(1))
+    synctx_inst = syncro(clock, tx, uart_tx)
+
+    # generate a strobe for the desired baud rate
+    baud_inst = uartbase.uartbaud(glbl, baudce, baudce16, baudrate=115200)
+    fifo_tx_inst = fifo_fast(glbl, fifobus, size=1)
+    tx_inst = uartbase.uarttx(glbl, fifobus, tx, baudce)
+
+
+    # create the UART instance.
+    # uart_inst = uartlite(
+    #     glbl, fifobus, serial_in=uart_rx, serial_out=uart_tx,
+    #     fifosize=4
+    # )
+
+    @always_seq(clock.posedge, reset=None)
+    def transmit():
+        fifobus.write_data.next = 'A'
+        fifobus.write.next = True
+
+    return blink, transmit, baud_inst, fifo_tx_inst, tx_inst, synctx_inst
 
 def program(args):
     subprocess.check_call(args=["papilio", "./xilinx/pprov.bit"], executable="/usr/bin/xc3sprog", shell=True, env={})
@@ -50,6 +84,7 @@ def build(args):
     # the design port names don't match the board pin names,
     # add the ports here (all the IO are a generic "chan")
     brd.add_port(**led_port_pin_map["ppro"])
+    brd.add_port_name('uart_tx', 'tx')
     flow = brd.get_flow(ppro_blinky)
     flow.run()
     info = flow.get_utilization()

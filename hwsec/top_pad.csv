@@ -1,7 +1,7 @@
 #Release 14.7 - par P.20131013 (lin64)
 #Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-#Wed Mar 22 16:07:52 2023
+#Fri Mar 24 12:59:30 2023
 
 #
 ## NOTE: This file is designed to be imported into a spreadsheet program
@@ -66,10 +66,10 @@ P44,,IOBM,IO_L62P_D5_2,UNUSED,,2,,,,,,,,,
 P45,,IOBS,IO_L49N_D4_2,UNUSED,,2,,,,,,,,,
 P46,,IOBM,IO_L49P_D3_2,UNUSED,,2,,,,,,,,,
 P47,,IOBS,IO_L48N_RDWR_B_VREF_2,UNUSED,,2,,,,,,,,,
-P48,A0,IOB,IO_L48P_D7_2,OUTPUT,LVTTL,2,12,SLOW,,,,LOCATED,NO,NONE,
+P48,,IOBM,IO_L48P_D7_2,UNUSED,,2,,,,,,,,,
 P49,,,GND,,,,,,,,,,,,
 P50,,IOBS,IO_L31N_GCLK30_D15_2,UNUSED,,2,,,,,,,,,
-P51,A1,IOB,IO_L31P_GCLK31_D14_2,INPUT,LVTTL,2,,,,NONE,,LOCATED,NO,NONE,
+P51,,IOBM,IO_L31P_GCLK31_D14_2,UNUSED,,2,,,,,,,,,
 P52,,,VCCINT,,,,,,,,1.2,,,,
 P53,,,VCCAUX,,,,,,,,2.5,,,,
 P54,,,GND,,,,,,,,,,,,

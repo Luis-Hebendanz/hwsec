@@ -1,13 +1,11 @@
 Release 14.7 Drc P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Wed Mar 22 16:07:58 2023
+Fri Mar 24 12:59:36 2023
 
 drc -z top.ncd top.pcf
 
-WARNING:PhysDesignRules:367 - The signal <Mram_gold_buf1_RAMD_D1_O> is
-   incomplete. The signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:781 - PULLUP on an active net. PULLUP of comp TX_PULLUP
    is set but the tri state is not configured. 
-DRC detected 0 errors and 2 warnings.  Please see the previously displayed
+DRC detected 0 errors and 1 warnings.  Please see the previously displayed
 individual error or warning messages for more details.
