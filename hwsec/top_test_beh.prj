@@ -1,0 +1,5 @@
+verilog work "uart_tx_sol.v"
+verilog work "uart_rx_sol.v"
+verilog work "top.v"
+verilog work "top_test.v"
+verilog work "/home/lhebendanz/Projects/hwsec2/xilinx_install/14.7/ISE_DS/ISE/verilog/src/glbl.v"

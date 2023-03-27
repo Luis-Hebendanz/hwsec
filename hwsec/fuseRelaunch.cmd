@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/morty/ex1/uart_rx_test_isim_beh.exe" -prj "/home/morty/ex1/uart_rx_test_beh.prj" "work.uart_rx_test" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/lhebendanz/Projects/hwsec2/hwsec/top_test_isim_beh.exe" -prj "/home/lhebendanz/Projects/hwsec2/hwsec/top_test_beh.prj" "work.top_test" "work.glbl" 

@@ -5,5 +5,8 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="35" delta="unknown" >"/home/lhebendanz/Projects/hwsec2/hwsec/top_test.v" Line 42: &lt;<arg fmt="%s" index="1">rst</arg>&gt; is already implicitly declared earlier.
+</msg>
+
 </messages>
 

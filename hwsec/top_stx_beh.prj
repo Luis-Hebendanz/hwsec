@@ -1,0 +1,4 @@
+verilog isim_temp "uart_tx_sol.v"
+verilog isim_temp "uart_rx_sol.v"
+verilog isim_temp "top.v"
+verilog isim_temp "/home/lhebendanz/Projects/hwsec2/xilinx_install/14.7/ISE_DS/ISE/verilog/src/glbl.v"

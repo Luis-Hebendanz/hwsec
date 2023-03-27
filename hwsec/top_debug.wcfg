@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/lhebendanz/Projects/hwsec2/hwsec/top_test_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="top_test" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/top_test/TX" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">TX</obj_property>
+      <obj_property name="ObjectShortName">TX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/gold_cnt_get" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">gold_cnt_get[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gold_cnt_get[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/rdy" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rdy</obj_property>
+      <obj_property name="ObjectShortName">rdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/LED1" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">LED1</obj_property>
+      <obj_property name="ObjectShortName">LED1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/data_rx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_rx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_rx[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/A4" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">A4</obj_property>
+      <obj_property name="ObjectShortName">A4</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/RX" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">RX</obj_property>
+      <obj_property name="ObjectShortName">RX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/valid" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">valid</obj_property>
+      <obj_property name="ObjectShortName">valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/data_rx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_rx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_rx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/rdy" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rdy</obj_property>
+      <obj_property name="ObjectShortName">rdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/CLK" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/data_tx" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_tx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_tx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/clk_count" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">clk_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/CLKS_TW" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">CLKS_TW[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLKS_TW[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/END_TIME" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">END_TIME[31:0]</obj_property>
+      <obj_property name="ObjectShortName">END_TIME[31:0]</obj_property>
+   </wvobject>
+</wave_config>

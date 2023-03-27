@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: top.prj
@@ -108,13 +108,14 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/hwsec/uart_tx_sol.v" into library work
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/hwsec/uart_tx_sol.v" into library work
 Parsing verilog file "uart_defs.v" included at line 1.
 Parsing module <uart_tx_sol>.
-Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/hwsec/uart_rx_sol.v" into library work
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/hwsec/uart_rx_sol.v" into library work
 Parsing verilog file "uart_defs.v" included at line 1.
 Parsing module <uart_rx_sol>.
-Analyzing Verilog file "/home/lhebendanz/Projects/hwsec/hwsec/top.v" into library work
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/hwsec/top.v" into library work
+Parsing verilog file "uart_defs.v" included at line 2.
 Parsing module <top>.
 
 =========================================================================
@@ -124,23 +125,23 @@ Parsing module <top>.
 Elaborating module <top>.
 
 Elaborating module <uart_tx_sol>.
-WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/uart_tx_sol.v" Line 31: Result of 16-bit expression is truncated to fit in 15-bit target.
-WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/uart_tx_sol.v" Line 60: Result of 4-bit expression is truncated to fit in 3-bit target.
-"/home/lhebendanz/Projects/hwsec/hwsec/uart_tx_sol.v" Line 89. $display UART TX: Invalid state 0x0
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec2/hwsec/uart_tx_sol.v" Line 31: Result of 16-bit expression is truncated to fit in 15-bit target.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec2/hwsec/uart_tx_sol.v" Line 60: Result of 4-bit expression is truncated to fit in 3-bit target.
+"/home/lhebendanz/Projects/hwsec2/hwsec/uart_tx_sol.v" Line 89. $display UART TX: Invalid state 0x0
 
 Elaborating module <uart_rx_sol>.
-WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/uart_rx_sol.v" Line 29: Result of 16-bit expression is truncated to fit in 15-bit target.
-WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/uart_rx_sol.v" Line 59: Result of 4-bit expression is truncated to fit in 3-bit target.
-"/home/lhebendanz/Projects/hwsec/hwsec/uart_rx_sol.v" Line 76. $display UART RX: Invalid state 0x0
-WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec/hwsec/top.v" Line 135: Result of 9-bit expression is truncated to fit in 8-bit target.
-WARNING:HDLCompiler:634 - "/home/lhebendanz/Projects/hwsec/hwsec/top.v" Line 26: Net <rst> does not have a driver.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec2/hwsec/uart_rx_sol.v" Line 29: Result of 16-bit expression is truncated to fit in 15-bit target.
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec2/hwsec/uart_rx_sol.v" Line 59: Result of 4-bit expression is truncated to fit in 3-bit target.
+"/home/lhebendanz/Projects/hwsec2/hwsec/uart_rx_sol.v" Line 76. $display UART RX: Invalid state 0x0
+WARNING:HDLCompiler:413 - "/home/lhebendanz/Projects/hwsec2/hwsec/top.v" Line 101: Result of 9-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:634 - "/home/lhebendanz/Projects/hwsec2/hwsec/top.v" Line 23: Net <rst> does not have a driver.
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
 Synthesizing Unit <top>.
-    Related source file is "/home/lhebendanz/Projects/hwsec/hwsec/top.v".
+    Related source file is "/home/lhebendanz/Projects/hwsec2/hwsec/top.v".
 WARNING:Xst:2935 - Signal 'rst', unconnected in block 'top', is tied to its initial value (0).
 WARNING:Xst:2999 - Signal 'gold_buf', unconnected in block 'top', is tied to its initial value.
     Found 16x8-bit single-port Read Only RAM <Mram_gold_buf> for signal <gold_buf>.
@@ -149,31 +150,32 @@ WARNING:Xst:2999 - Signal 'gold_buf', unconnected in block 'top', is tied to its
     Found 8-bit register for signal <gold_cnt_get>.
     Found 3-bit register for signal <state>.
     Found 8-bit register for signal <data_tx>.
+    Found 1-bit register for signal <wait_flag>.
     Found 1-bit register for signal <en>.
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 2                                              |
-    | Transitions        | 6                                              |
-    | Inputs             | 5                                              |
+    | Transitions        | 7                                              |
+    | Inputs             | 6                                              |
     | Outputs            | 2                                              |
     | Clock              | CLK (rising_edge)                              |
     | Power Up State     | 111                                            |
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 8-bit adder for signal <gold_cnt_get[7]_GND_1_o_add_2_OUT> created at line 135.
-    Found 8-bit comparator greater for signal <n0002> created at line 138
+    Found 8-bit adder for signal <gold_cnt_get[7]_GND_1_o_add_5_OUT> created at line 101.
+    Found 8-bit comparator greater for signal <n0006> created at line 105
     Summary:
 	inferred   1 RAM(s).
 	inferred   1 Adder/Subtractor(s).
-	inferred  19 D-type flip-flop(s).
+	inferred  20 D-type flip-flop(s).
 	inferred   1 Comparator(s).
-	inferred   9 Multiplexer(s).
+	inferred  13 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <top> synthesized.
 
 Synthesizing Unit <uart_tx_sol>.
-    Related source file is "/home/lhebendanz/Projects/hwsec/hwsec/uart_tx_sol.v".
+    Related source file is "/home/lhebendanz/Projects/hwsec2/hwsec/uart_tx_sol.v".
     Found 1-bit register for signal <dout>.
     Found 1-bit register for signal <rdy>.
     Found 15-bit register for signal <etu_cnt>.
@@ -202,7 +204,7 @@ Synthesizing Unit <uart_tx_sol>.
 Unit <uart_tx_sol> synthesized.
 
 Synthesizing Unit <uart_rx_sol>.
-    Related source file is "/home/lhebendanz/Projects/hwsec/hwsec/uart_rx_sol.v".
+    Related source file is "/home/lhebendanz/Projects/hwsec2/hwsec/uart_rx_sol.v".
     Found 1-bit register for signal <valid>.
     Found 15-bit register for signal <etu_cnt>.
     Found 3-bit register for signal <bit_cnt>.
@@ -239,15 +241,15 @@ Macro Statistics
  15-bit adder                                          : 2
  3-bit adder                                           : 2
  8-bit adder                                           : 1
-# Registers                                            : 14
- 1-bit register                                        : 6
+# Registers                                            : 15
+ 1-bit register                                        : 7
  15-bit register                                       : 2
  3-bit register                                        : 2
  8-bit register                                        : 4
 # Comparators                                          : 1
  8-bit comparator greater                              : 1
-# Multiplexers                                         : 22
- 1-bit 2-to-1 multiplexer                              : 4
+# Multiplexers                                         : 26
+ 1-bit 2-to-1 multiplexer                              : 8
  15-bit 2-to-1 multiplexer                             : 5
  15-bit 4-to-1 multiplexer                             : 2
  3-bit 2-to-1 multiplexer                              : 2
@@ -294,12 +296,12 @@ Macro Statistics
  8-bit adder                                           : 1
 # Counters                                             : 2
  3-bit up counter                                      : 2
-# Registers                                            : 68
- Flip-Flops                                            : 68
+# Registers                                            : 69
+ Flip-Flops                                            : 69
 # Comparators                                          : 1
  8-bit comparator greater                              : 1
-# Multiplexers                                         : 27
- 1-bit 2-to-1 multiplexer                              : 12
+# Multiplexers                                         : 31
+ 1-bit 2-to-1 multiplexer                              : 16
  15-bit 2-to-1 multiplexer                             : 5
  15-bit 4-to-1 multiplexer                             : 2
  8-bit 2-to-1 multiplexer                              : 8
@@ -343,6 +345,9 @@ Optimizing unit <top> ...
 Optimizing unit <uart_tx_sol> ...
 
 Optimizing unit <uart_rx_sol> ...
+WARNING:Xst:1293 - FF/Latch <gold_cnt_get_5> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <gold_cnt_get_6> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <gold_cnt_get_7> has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
 
 Mapping all equations...
 Building and optimizing final netlist ...
@@ -354,8 +359,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 79
- Flip-Flops                                            : 79
+# Registers                                            : 77
+ Flip-Flops                                            : 77
 
 =========================================================================
 
@@ -378,21 +383,20 @@ Top Level Output File Name         : top.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 215
+# BELS                             : 206
 #      GND                         : 1
 #      INV                         : 4
 #      LUT1                        : 28
 #      LUT2                        : 20
 #      LUT3                        : 10
-#      LUT4                        : 21
-#      LUT5                        : 13
-#      LUT6                        : 58
+#      LUT4                        : 7
+#      LUT5                        : 14
+#      LUT6                        : 63
 #      MUXCY                       : 28
-#      MUXF7                       : 1
 #      VCC                         : 1
 #      XORCY                       : 30
-# FlipFlops/Latches                : 79
-#      FD                          : 55
+# FlipFlops/Latches                : 77
+#      FD                          : 53
 #      FDE                         : 22
 #      FDR                         : 1
 #      FDS                         : 1
@@ -409,15 +413,15 @@ Selected Device : 6slx9tqg144-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              79  out of  11440     0%  
- Number of Slice LUTs:                  154  out of   5720     2%  
-    Number used as Logic:               154  out of   5720     2%  
+ Number of Slice Registers:              77  out of  11440     0%  
+ Number of Slice LUTs:                  146  out of   5720     2%  
+    Number used as Logic:               146  out of   5720     2%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    154
-   Number with an unused Flip Flop:      75  out of    154    48%  
-   Number with an unused LUT:             0  out of    154     0%  
-   Number of fully used LUT-FF pairs:    79  out of    154    51%  
+ Number of LUT Flip Flop pairs used:    146
+   Number with an unused Flip Flop:      69  out of    146    47%  
+   Number with an unused LUT:             0  out of    146     0%  
+   Number of fully used LUT-FF pairs:    77  out of    146    52%  
    Number of unique control sets:         4
 
 IO Utilization: 
@@ -448,7 +452,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-CLK                                | BUFGP                  | 79    |
+CLK                                | BUFGP                  | 77    |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -459,8 +463,8 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 4.698ns (Maximum Frequency: 212.857MHz)
-   Minimum input arrival time before clock: 4.828ns
+   Minimum period: 5.483ns (Maximum Frequency: 182.382MHz)
+   Minimum input arrival time before clock: 4.500ns
    Maximum output required time after clock: 4.162ns
    Maximum combinational path delay: No path found
 
@@ -470,33 +474,34 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK'
-  Clock period: 4.698ns (frequency: 212.857MHz)
-  Total number of paths / destination ports: 2134 / 103
+  Clock period: 5.483ns (frequency: 182.382MHz)
+  Total number of paths / destination ports: 2371 / 101
 -------------------------------------------------------------------------
-Delay:               4.698ns (Levels of Logic = 3)
-  Source:            rxi/etu_cnt_10 (FF)
-  Destination:       rxi/state_FSM_FFd2 (FF)
+Delay:               5.483ns (Levels of Logic = 4)
+  Source:            rxi/data_out_6 (FF)
+  Destination:       data_tx_0 (FF)
   Source Clock:      CLK rising
   Destination Clock: CLK rising
 
-  Data Path: rxi/etu_cnt_10 to rxi/state_FSM_FFd2
+  Data Path: rxi/data_out_6 to data_tx_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               3   0.525   1.221  rxi/etu_cnt_10 (rxi/etu_cnt_10)
-     LUT6:I0->O            2   0.254   0.834  rxi/etu_half<14>2 (rxi/etu_half<14>1)
-     LUT5:I3->O           16   0.250   1.290  rxi/etu_half<14>3 (rxi/etu_half)
-     LUT6:I4->O            1   0.250   0.000  rxi/Mmux_state[1]_etu_cnt[14]_mux_28_OUT16 (rxi/state[1]_etu_cnt[14]_mux_28_OUT<0>)
-     FD:D                      0.074          rxi/etu_cnt_0
+     FDE:C->Q              6   0.525   1.152  rxi/data_out_6 (rxi/data_out_6)
+     LUT4:I0->O            2   0.254   0.726  state[2]_data_tx[7]_select_29_OUT<7>111 (state[2]_data_tx[7]_select_29_OUT<7>11)
+     LUT5:I4->O            9   0.254   0.976  data_rx[7]_GND_1_o_equal_14_o<7>1 (data_rx[7]_GND_1_o_equal_14_o)
+     LUT6:I5->O            7   0.254   1.018  state[2]_data_tx[7]_select_29_OUT<3>1 (state[2]_data_tx[7]_select_29_OUT<3>1)
+     LUT5:I3->O            1   0.250   0.000  state[2]_data_tx[7]_select_29_OUT<6>2 (state[2]_data_tx[7]_select_29_OUT<6>)
+     FD:D                      0.074          data_tx_6
     ----------------------------------------
-    Total                      4.698ns (1.353ns logic, 3.345ns route)
-                                       (28.8% logic, 71.2% route)
+    Total                      5.483ns (1.611ns logic, 3.872ns route)
+                                       (29.4% logic, 70.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
-  Total number of paths / destination ports: 29 / 28
+  Total number of paths / destination ports: 28 / 28
 -------------------------------------------------------------------------
-Offset:              4.828ns (Levels of Logic = 4)
+Offset:              4.500ns (Levels of Logic = 3)
   Source:            RX (PAD)
   Destination:       rxi/bit_cnt_2 (FF)
   Destination Clock: CLK rising
@@ -505,14 +510,13 @@ Offset:              4.828ns (Levels of Logic = 4)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            19   1.328   1.716  RX_IBUF (RX_IBUF)
-     LUT6:I0->O            1   0.254   0.000  rxi/_n0095_inv1_rstpot_F (N53)
-     MUXF7:I0->O          11   0.163   1.039  rxi/_n0095_inv1_rstpot (rxi/_n0095_inv1_rstpot)
-     LUT4:I3->O            1   0.254   0.000  rxi/bit_cnt_1_dpot (rxi/bit_cnt_1_dpot)
-     FDE:D                     0.074          rxi/bit_cnt_1
+     IBUF:I->O            28   1.328   1.908  RX_IBUF (RX_IBUF)
+     LUT6:I0->O            1   0.254   0.682  rxi/_n0095_inv1_rstpot_F (N37)
+     LUT6:I5->O            1   0.254   0.000  rxi/bit_cnt_2_dpot (rxi/bit_cnt_2_dpot)
+     FDE:D                     0.074          rxi/bit_cnt_2
     ----------------------------------------
-    Total                      4.828ns (2.073ns logic, 2.755ns route)
-                                       (42.9% logic, 57.1% route)
+    Total                      4.500ns (1.910ns logic, 2.590ns route)
+                                       (42.4% logic, 57.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
@@ -543,21 +547,21 @@ Clock to Setup on destination clock CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |    4.698|         |         |         |
+CLK            |    5.483|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 4.00 secs
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 4.95 secs
  
 --> 
 
 
-Total memory usage is 589364 kilobytes
+Total memory usage is 589428 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    8 (   0 filtered)
+Number of warnings :   11 (   0 filtered)
 Number of infos    :    1 (   0 filtered)
 

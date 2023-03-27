@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2023-03-24T12:45:55</DateModified>
+  <DateModified>2023-03-27T15:12:03</DateModified>
   <ModuleName>top</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>/home/lhebendanz/Projects/hwsec/hwsec/iseconfig/top.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/lhebendanz/Projects/hwsec/hwsec/</ImplementationReportsDirectory>
+  <SavedFilePath>/home/lhebendanz/Projects/hwsec2/hwsec/iseconfig/top.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/lhebendanz/Projects/hwsec2/hwsec/</ImplementationReportsDirectory>
   <DateInitialized>2023-03-07T14:16:53</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

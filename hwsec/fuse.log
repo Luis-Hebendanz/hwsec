@@ -1,23 +1,27 @@
-Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/morty/ex1/uart_rx_test_isim_beh.exe" -prj "/home/morty/ex1/uart_rx_test_beh.prj" "work.uart_rx_test" "work.glbl" 
+Running: /home/lhebendanz/Projects/hwsec2/xilinx_install/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/lhebendanz/Projects/hwsec2/hwsec/top_test_isim_beh.exe" -prj "/home/lhebendanz/Projects/hwsec2/hwsec/top_test_beh.prj" "work.top_test" "work.glbl" 
 ISim P.20131013 (signature 0xfbc00daa)
-Number of CPUs detected in this system: 4
-Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
 Determining compilation order of HDL files
-Analyzing Verilog file "/home/morty/ex1/uart_tx.v" into library work
-Analyzing Verilog file "/home/morty/ex1/uart_rx.v" into library work
-Analyzing Verilog file "/home/morty/ex1/uart_rx_test.v" into library work
-Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/hwsec/uart_tx_sol.v" into library work
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/hwsec/uart_rx_sol.v" into library work
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/hwsec/top.v" into library work
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/hwsec/top_test.v" into library work
+WARNING:HDLCompiler:35 - "/home/lhebendanz/Projects/hwsec2/hwsec/top_test.v" Line 42: <rst> is already implicitly declared earlier.
+Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/xilinx_install/14.7/ISE_DS/ISE/verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 82948 KB
-Fuse CPU Usage: 1090 ms
-Compiling module uart_tx
-Compiling module uart_rx
-Compiling module uart_rx_test
+Fuse Memory Usage: 82820 KB
+Fuse CPU Usage: 580 ms
+Compiling module uart_tx_sol
+Compiling module uart_rx_sol
+Compiling module top
+Compiling module top_test
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Compiled 4 Verilog Units
-Built simulation executable /home/morty/ex1/uart_rx_test_isim_beh.exe
-Fuse Memory Usage: 643156 KB
-Fuse CPU Usage: 1110 ms
-GCC CPU Usage: 530 ms
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 5 Verilog Units
+Built simulation executable /home/lhebendanz/Projects/hwsec2/hwsec/top_test_isim_beh.exe
+Fuse Memory Usage: 1167092 KB
+Fuse CPU Usage: 600 ms
+GCC CPU Usage: 250 ms
