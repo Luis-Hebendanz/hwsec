@@ -26,7 +26,7 @@ static int ng1[] = {1, 0};
 static int ng2[] = {0, 0};
 static unsigned int ng3[] = {0U, 0U};
 static const char *ng4 = "Transmitter is not ready";
-static int ng5[] = {103, 0};
+static int ng5[] = {111, 0};
 
 
 

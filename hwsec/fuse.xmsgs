@@ -8,5 +8,8 @@
 <msg type="warning" file="HDLCompiler" num="35" delta="unknown" >"/home/lhebendanz/Projects/hwsec2/hwsec/top_test.v" Line 42: &lt;<arg fmt="%s" index="1">rst</arg>&gt; is already implicitly declared earlier.
 </msg>
 
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/lhebendanz/Projects/hwsec2/hwsec/top_test.v" Line 17: Port <arg fmt="%s" index="1">A1</arg> is not connected to this instance
+</msg>
+
 </messages>
 

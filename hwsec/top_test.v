@@ -74,7 +74,7 @@ module top_test;
 			$display("Transmitter is not ready");
 		end
 		
-      data_tx = "g";
+      data_tx = "o";
 		en = 1;
 		
 		// Add stimulus here
