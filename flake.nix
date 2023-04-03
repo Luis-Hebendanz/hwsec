@@ -38,7 +38,9 @@
               autopep8
               setuptools
               ipython
-              myhdl
+              pyserial
+              numpy
+              #myhdl
               #rhea
               pytest
             ];
