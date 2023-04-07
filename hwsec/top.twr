@@ -29,19 +29,19 @@ INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on
 Timing constraint: NET "CLK_BUFGP/IBUFG" PERIOD = 31.25 ns HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 5514 paths analyzed, 1093 endpoints analyzed, 0 failing endpoints
+ 102305 paths analyzed, 1880 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   5.376ns.
+ Minimum period is   9.013ns.
 --------------------------------------------------------------------------------
 
-Paths for end point txi/data_7 (SLICE_X13Y27.D4), 17 paths
+Paths for end point data_tx_3 (SLICE_X13Y23.D1), 383 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     25.874ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_10 (FF)
-  Destination:          txi/data_7 (FF)
+Slack (setup path):     22.237ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_8 (FF)
+  Destination:          data_tx_3 (FF)
   Requirement:          31.250ns
-  Data Path Delay:      5.286ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.055ns (0.683 - 0.738)
+  Data Path Delay:      8.900ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.078ns (0.676 - 0.754)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -52,36 +52,43 @@ Slack (setup path):     25.874ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_10 to txi/data_7
+  Maximum Data Path at Slow Process Corner: pwd_check_time_8 to data_tx_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X11Y37.CQ      Tcko                  0.430   txi/etu_cnt<11>
-                                                       txi/etu_cnt_10
-    SLICE_X11Y36.A1      net (fanout=2)        0.938   txi/etu_cnt<10>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.D4      net (fanout=9)        1.430   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_7_dpot
-                                                       txi/data_7
+    SLICE_X5Y34.CQ       Tcko                  0.430   pwd_check_time<9>
+                                                       pwd_check_time_8
+    SLICE_X8Y42.B3       net (fanout=9)        2.257   pwd_check_time<8>
+    SLICE_X8Y42.COUT     Topcyb                0.483   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lut<1>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y25.C1      net (fanout=82)       3.073   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y25.C       Tilo                  0.259   N77
+                                                       state[3]_data_tx[7]_select_156_OUT<3>5
+    SLICE_X13Y23.D1      net (fanout=1)        1.600   state[3]_data_tx[7]_select_156_OUT<3>7
+    SLICE_X13Y23.CLK     Tas                   0.373   data_tx<3>
+                                                       state[3]_data_tx[7]_select_156_OUT<3>6
+                                                       data_tx_3
     -------------------------------------------------  ---------------------------
-    Total                                      5.286ns (1.658ns logic, 3.628ns route)
-                                                       (31.4% logic, 68.6% route)
+    Total                                      8.900ns (1.961ns logic, 6.939ns route)
+                                                       (22.0% logic, 78.0% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     26.076ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_9 (FF)
-  Destination:          txi/data_7 (FF)
+Slack (setup path):     22.330ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_8 (FF)
+  Destination:          data_tx_3 (FF)
   Requirement:          31.250ns
-  Data Path Delay:      5.084ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.055ns (0.683 - 0.738)
+  Data Path Delay:      8.807ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.078ns (0.676 - 0.754)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -92,36 +99,43 @@ Slack (setup path):     26.076ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_9 to txi/data_7
+  Maximum Data Path at Slow Process Corner: pwd_check_time_8 to data_tx_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X11Y37.BQ      Tcko                  0.430   txi/etu_cnt<11>
-                                                       txi/etu_cnt_9
-    SLICE_X11Y36.A2      net (fanout=2)        0.736   txi/etu_cnt<9>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.D4      net (fanout=9)        1.430   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_7_dpot
-                                                       txi/data_7
+    SLICE_X5Y34.CQ       Tcko                  0.430   pwd_check_time<9>
+                                                       pwd_check_time_8
+    SLICE_X8Y42.B3       net (fanout=9)        2.257   pwd_check_time<8>
+    SLICE_X8Y42.COUT     Topcyb                0.390   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lutdi1
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y25.C1      net (fanout=82)       3.073   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y25.C       Tilo                  0.259   N77
+                                                       state[3]_data_tx[7]_select_156_OUT<3>5
+    SLICE_X13Y23.D1      net (fanout=1)        1.600   state[3]_data_tx[7]_select_156_OUT<3>7
+    SLICE_X13Y23.CLK     Tas                   0.373   data_tx<3>
+                                                       state[3]_data_tx[7]_select_156_OUT<3>6
+                                                       data_tx_3
     -------------------------------------------------  ---------------------------
-    Total                                      5.084ns (1.658ns logic, 3.426ns route)
-                                                       (32.6% logic, 67.4% route)
+    Total                                      8.807ns (1.868ns logic, 6.939ns route)
+                                                       (21.2% logic, 78.8% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     26.236ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_6 (FF)
-  Destination:          txi/data_7 (FF)
+Slack (setup path):     22.484ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_15 (FF)
+  Destination:          data_tx_3 (FF)
   Requirement:          31.250ns
-  Data Path Delay:      4.921ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.058ns (0.683 - 0.741)
+  Data Path Delay:      8.655ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.076ns (0.676 - 0.752)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -132,39 +146,46 @@ Slack (setup path):     26.236ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_6 to txi/data_7
+  Maximum Data Path at Slow Process Corner: pwd_check_time_15 to data_tx_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y36.CQ       Tcko                  0.430   txi/etu_cnt<7>
-                                                       txi/etu_cnt_6
-    SLICE_X11Y36.A3      net (fanout=2)        0.573   txi/etu_cnt<6>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.D4      net (fanout=9)        1.430   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_7_dpot
-                                                       txi/data_7
+    SLICE_X5Y35.CQ       Tcko                  0.430   pwd_check_time<16>
+                                                       pwd_check_time_15
+    SLICE_X8Y42.C1       net (fanout=9)        2.144   pwd_check_time<15>
+    SLICE_X8Y42.COUT     Topcyc                0.351   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lutdi2
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y25.C1      net (fanout=82)       3.073   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y25.C       Tilo                  0.259   N77
+                                                       state[3]_data_tx[7]_select_156_OUT<3>5
+    SLICE_X13Y23.D1      net (fanout=1)        1.600   state[3]_data_tx[7]_select_156_OUT<3>7
+    SLICE_X13Y23.CLK     Tas                   0.373   data_tx<3>
+                                                       state[3]_data_tx[7]_select_156_OUT<3>6
+                                                       data_tx_3
     -------------------------------------------------  ---------------------------
-    Total                                      4.921ns (1.658ns logic, 3.263ns route)
-                                                       (33.7% logic, 66.3% route)
+    Total                                      8.655ns (1.829ns logic, 6.826ns route)
+                                                       (21.1% logic, 78.9% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point txi/data_5 (SLICE_X13Y27.B5), 17 paths
+Paths for end point data_tx_2 (SLICE_X13Y23.B1), 312 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     25.929ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_10 (FF)
-  Destination:          txi/data_5 (FF)
+Slack (setup path):     22.445ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_8 (FF)
+  Destination:          data_tx_2 (FF)
   Requirement:          31.250ns
-  Data Path Delay:      5.231ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.055ns (0.683 - 0.738)
+  Data Path Delay:      8.692ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.078ns (0.676 - 0.754)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -175,36 +196,43 @@ Slack (setup path):     25.929ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_10 to txi/data_5
+  Maximum Data Path at Slow Process Corner: pwd_check_time_8 to data_tx_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X11Y37.CQ      Tcko                  0.430   txi/etu_cnt<11>
-                                                       txi/etu_cnt_10
-    SLICE_X11Y36.A1      net (fanout=2)        0.938   txi/etu_cnt<10>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.B5      net (fanout=9)        1.375   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_5_dpot
-                                                       txi/data_5
+    SLICE_X5Y34.CQ       Tcko                  0.430   pwd_check_time<9>
+                                                       pwd_check_time_8
+    SLICE_X8Y42.B3       net (fanout=9)        2.257   pwd_check_time<8>
+    SLICE_X8Y42.COUT     Topcyb                0.483   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lut<1>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y24.D5      net (fanout=82)       3.151   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y24.D       Tilo                  0.259   en
+                                                       Mmux_GND_1_o_data_tx[7]_mux_62_OUT321
+    SLICE_X13Y23.B1      net (fanout=2)        1.314   Mmux_GND_1_o_data_tx[7]_mux_62_OUT32
+    SLICE_X13Y23.CLK     Tas                   0.373   data_tx<3>
+                                                       state[3]_data_tx[7]_select_156_OUT<2>5
+                                                       data_tx_2
     -------------------------------------------------  ---------------------------
-    Total                                      5.231ns (1.658ns logic, 3.573ns route)
-                                                       (31.7% logic, 68.3% route)
+    Total                                      8.692ns (1.961ns logic, 6.731ns route)
+                                                       (22.6% logic, 77.4% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     26.131ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_9 (FF)
-  Destination:          txi/data_5 (FF)
+Slack (setup path):     22.538ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_8 (FF)
+  Destination:          data_tx_2 (FF)
   Requirement:          31.250ns
-  Data Path Delay:      5.029ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.055ns (0.683 - 0.738)
+  Data Path Delay:      8.599ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.078ns (0.676 - 0.754)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -215,36 +243,43 @@ Slack (setup path):     26.131ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_9 to txi/data_5
+  Maximum Data Path at Slow Process Corner: pwd_check_time_8 to data_tx_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X11Y37.BQ      Tcko                  0.430   txi/etu_cnt<11>
-                                                       txi/etu_cnt_9
-    SLICE_X11Y36.A2      net (fanout=2)        0.736   txi/etu_cnt<9>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.B5      net (fanout=9)        1.375   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_5_dpot
-                                                       txi/data_5
+    SLICE_X5Y34.CQ       Tcko                  0.430   pwd_check_time<9>
+                                                       pwd_check_time_8
+    SLICE_X8Y42.B3       net (fanout=9)        2.257   pwd_check_time<8>
+    SLICE_X8Y42.COUT     Topcyb                0.390   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lutdi1
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y24.D5      net (fanout=82)       3.151   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y24.D       Tilo                  0.259   en
+                                                       Mmux_GND_1_o_data_tx[7]_mux_62_OUT321
+    SLICE_X13Y23.B1      net (fanout=2)        1.314   Mmux_GND_1_o_data_tx[7]_mux_62_OUT32
+    SLICE_X13Y23.CLK     Tas                   0.373   data_tx<3>
+                                                       state[3]_data_tx[7]_select_156_OUT<2>5
+                                                       data_tx_2
     -------------------------------------------------  ---------------------------
-    Total                                      5.029ns (1.658ns logic, 3.371ns route)
-                                                       (33.0% logic, 67.0% route)
+    Total                                      8.599ns (1.868ns logic, 6.731ns route)
+                                                       (21.7% logic, 78.3% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     26.291ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_6 (FF)
-  Destination:          txi/data_5 (FF)
+Slack (setup path):     22.692ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_15 (FF)
+  Destination:          data_tx_2 (FF)
   Requirement:          31.250ns
-  Data Path Delay:      4.866ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.058ns (0.683 - 0.741)
+  Data Path Delay:      8.447ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.076ns (0.676 - 0.752)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -255,39 +290,46 @@ Slack (setup path):     26.291ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_6 to txi/data_5
+  Maximum Data Path at Slow Process Corner: pwd_check_time_15 to data_tx_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y36.CQ       Tcko                  0.430   txi/etu_cnt<7>
-                                                       txi/etu_cnt_6
-    SLICE_X11Y36.A3      net (fanout=2)        0.573   txi/etu_cnt<6>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.B5      net (fanout=9)        1.375   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_5_dpot
-                                                       txi/data_5
+    SLICE_X5Y35.CQ       Tcko                  0.430   pwd_check_time<16>
+                                                       pwd_check_time_15
+    SLICE_X8Y42.C1       net (fanout=9)        2.144   pwd_check_time<15>
+    SLICE_X8Y42.COUT     Topcyc                0.351   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lutdi2
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y24.D5      net (fanout=82)       3.151   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X13Y24.D       Tilo                  0.259   en
+                                                       Mmux_GND_1_o_data_tx[7]_mux_62_OUT321
+    SLICE_X13Y23.B1      net (fanout=2)        1.314   Mmux_GND_1_o_data_tx[7]_mux_62_OUT32
+    SLICE_X13Y23.CLK     Tas                   0.373   data_tx<3>
+                                                       state[3]_data_tx[7]_select_156_OUT<2>5
+                                                       data_tx_2
     -------------------------------------------------  ---------------------------
-    Total                                      4.866ns (1.658ns logic, 3.208ns route)
-                                                       (34.1% logic, 65.9% route)
+    Total                                      8.447ns (1.829ns logic, 6.618ns route)
+                                                       (21.7% logic, 78.3% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point txi/data_4 (SLICE_X13Y27.A5), 17 paths
+Paths for end point wait_flag (SLICE_X10Y25.D4), 312 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     25.934ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_10 (FF)
-  Destination:          txi/data_4 (FF)
+Slack (setup path):     22.521ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_8 (FF)
+  Destination:          wait_flag (FF)
   Requirement:          31.250ns
-  Data Path Delay:      5.226ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.055ns (0.683 - 0.738)
+  Data Path Delay:      8.646ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.048ns (0.706 - 0.754)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -298,36 +340,43 @@ Slack (setup path):     25.934ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_10 to txi/data_4
+  Maximum Data Path at Slow Process Corner: pwd_check_time_8 to wait_flag
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X11Y37.CQ      Tcko                  0.430   txi/etu_cnt<11>
-                                                       txi/etu_cnt_10
-    SLICE_X11Y36.A1      net (fanout=2)        0.938   txi/etu_cnt<10>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.A5      net (fanout=9)        1.370   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_4_dpot
-                                                       txi/data_4
+    SLICE_X5Y34.CQ       Tcko                  0.430   pwd_check_time<9>
+                                                       pwd_check_time_8
+    SLICE_X8Y42.B3       net (fanout=9)        2.257   pwd_check_time<8>
+    SLICE_X8Y42.COUT     Topcyb                0.483   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lut<1>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X12Y23.C1      net (fanout=82)       3.438   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X12Y23.C       Tilo                  0.255   state_FSM_FFd1_1
+                                                       state_FSM_FFd2-In111
+    SLICE_X10Y25.D4      net (fanout=2)        1.009   state_FSM_FFd2-In11
+    SLICE_X10Y25.CLK     Tas                   0.349   wait_flag
+                                                       state_state[3]_wait_flag_Select_150_o5
+                                                       wait_flag
     -------------------------------------------------  ---------------------------
-    Total                                      5.226ns (1.658ns logic, 3.568ns route)
-                                                       (31.7% logic, 68.3% route)
+    Total                                      8.646ns (1.933ns logic, 6.713ns route)
+                                                       (22.4% logic, 77.6% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     26.136ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_9 (FF)
-  Destination:          txi/data_4 (FF)
+Slack (setup path):     22.614ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_8 (FF)
+  Destination:          wait_flag (FF)
   Requirement:          31.250ns
-  Data Path Delay:      5.024ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.055ns (0.683 - 0.738)
+  Data Path Delay:      8.553ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.048ns (0.706 - 0.754)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -338,36 +387,43 @@ Slack (setup path):     26.136ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_9 to txi/data_4
+  Maximum Data Path at Slow Process Corner: pwd_check_time_8 to wait_flag
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X11Y37.BQ      Tcko                  0.430   txi/etu_cnt<11>
-                                                       txi/etu_cnt_9
-    SLICE_X11Y36.A2      net (fanout=2)        0.736   txi/etu_cnt<9>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.A5      net (fanout=9)        1.370   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_4_dpot
-                                                       txi/data_4
+    SLICE_X5Y34.CQ       Tcko                  0.430   pwd_check_time<9>
+                                                       pwd_check_time_8
+    SLICE_X8Y42.B3       net (fanout=9)        2.257   pwd_check_time<8>
+    SLICE_X8Y42.COUT     Topcyb                0.390   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lutdi1
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X12Y23.C1      net (fanout=82)       3.438   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X12Y23.C       Tilo                  0.255   state_FSM_FFd1_1
+                                                       state_FSM_FFd2-In111
+    SLICE_X10Y25.D4      net (fanout=2)        1.009   state_FSM_FFd2-In11
+    SLICE_X10Y25.CLK     Tas                   0.349   wait_flag
+                                                       state_state[3]_wait_flag_Select_150_o5
+                                                       wait_flag
     -------------------------------------------------  ---------------------------
-    Total                                      5.024ns (1.658ns logic, 3.366ns route)
-                                                       (33.0% logic, 67.0% route)
+    Total                                      8.553ns (1.840ns logic, 6.713ns route)
+                                                       (21.5% logic, 78.5% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     26.296ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               txi/etu_cnt_6 (FF)
-  Destination:          txi/data_4 (FF)
+Slack (setup path):     22.768ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               pwd_check_time_15 (FF)
+  Destination:          wait_flag (FF)
   Requirement:          31.250ns
-  Data Path Delay:      4.861ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.058ns (0.683 - 0.741)
+  Data Path Delay:      8.401ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.046ns (0.706 - 0.752)
   Source Clock:         CLK_BUFGP rising at 0.000ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.035ns
@@ -378,112 +434,122 @@ Slack (setup path):     26.296ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: txi/etu_cnt_6 to txi/data_4
+  Maximum Data Path at Slow Process Corner: pwd_check_time_15 to wait_flag
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y36.CQ       Tcko                  0.430   txi/etu_cnt<7>
-                                                       txi/etu_cnt_6
-    SLICE_X11Y36.A3      net (fanout=2)        0.573   txi/etu_cnt<6>
-    SLICE_X11Y36.A       Tilo                  0.259   txi/etu_full<14>
-                                                       txi/etu_full<14>2
-    SLICE_X9Y37.B1       net (fanout=2)        0.732   txi/etu_full<14>1
-    SLICE_X9Y37.B        Tilo                  0.259   txi/state_FSM_FFd2
-                                                       txi/etu_full<14>3_1
-    SLICE_X9Y37.D2       net (fanout=1)        0.528   txi/etu_full<14>3
-    SLICE_X9Y37.DMUX     Tilo                  0.337   txi/state_FSM_FFd2
-                                                       txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.A5      net (fanout=9)        1.370   txi/_n0093_inv1_rstpot
-    SLICE_X13Y27.CLK     Tas                   0.373   txi/data<7>
-                                                       txi/data_4_dpot
-                                                       txi/data_4
+    SLICE_X5Y35.CQ       Tcko                  0.430   pwd_check_time<16>
+                                                       pwd_check_time_15
+    SLICE_X8Y42.C1       net (fanout=9)        2.144   pwd_check_time<15>
+    SLICE_X8Y42.COUT     Topcyc                0.351   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_lutdi2
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<3>
+    SLICE_X8Y43.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<7>
+    SLICE_X8Y44.COUT     Tbyp                  0.093   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.CIN      net (fanout=1)        0.003   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<11>
+    SLICE_X8Y45.AMUX     Tcina                 0.230   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+                                                       Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X12Y23.C1      net (fanout=82)       3.438   Mcompar_pwd_check_time[63]_GND_1_o_LessThan_34_o_cy<12>
+    SLICE_X12Y23.C       Tilo                  0.255   state_FSM_FFd1_1
+                                                       state_FSM_FFd2-In111
+    SLICE_X10Y25.D4      net (fanout=2)        1.009   state_FSM_FFd2-In11
+    SLICE_X10Y25.CLK     Tas                   0.349   wait_flag
+                                                       state_state[3]_wait_flag_Select_150_o5
+                                                       wait_flag
     -------------------------------------------------  ---------------------------
-    Total                                      4.861ns (1.658ns logic, 3.203ns route)
-                                                       (34.1% logic, 65.9% route)
+    Total                                      8.401ns (1.801ns logic, 6.600ns route)
+                                                       (21.4% logic, 78.6% route)
 
 --------------------------------------------------------------------------------
 
 Hold Paths: NET "CLK_BUFGP/IBUFG" PERIOD = 31.25 ns HIGH 50%;
 --------------------------------------------------------------------------------
 
-Paths for end point Mram_gold_buf1_RAMA (SLICE_X8Y23.D2), 1 path
+Paths for end point gold_recv/bit_cnt_2 (SLICE_X9Y3.B5), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.358ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               gold_cnt_set_1 (FF)
-  Destination:          Mram_gold_buf1_RAMA (RAM)
+Slack (hold path):      0.434ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               gold_recv/bit_cnt_1 (FF)
+  Destination:          gold_recv/bit_cnt_2 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.362ns (Levels of Logic = 0)
-  Clock Path Skew:      0.004ns (0.093 - 0.089)
+  Data Path Delay:      0.434ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_BUFGP rising at 31.250ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path at Fast Process Corner: gold_cnt_set_1 to Mram_gold_buf1_RAMA
+  Minimum Data Path at Fast Process Corner: gold_recv/bit_cnt_1 to gold_recv/bit_cnt_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X8Y24.BQ       Tcko                  0.234   gold_cnt_set<3>
-                                                       gold_cnt_set_1
-    SLICE_X8Y23.D2       net (fanout=4)        0.423   gold_cnt_set<1>
-    SLICE_X8Y23.CLK      Tah         (-Th)     0.295   gold_data_tx<4>
-                                                       Mram_gold_buf1_RAMA
+    SLICE_X9Y3.BQ        Tcko                  0.198   gold_recv/bit_cnt<1>
+                                                       gold_recv/bit_cnt_1
+    SLICE_X9Y3.B5        net (fanout=3)        0.081   gold_recv/bit_cnt<1>
+    SLICE_X9Y3.CLK       Tah         (-Th)    -0.155   gold_recv/bit_cnt<1>
+                                                       gold_recv/Mcount_bit_cnt_xor<2>11
+                                                       gold_recv/bit_cnt_2
     -------------------------------------------------  ---------------------------
-    Total                                      0.362ns (-0.061ns logic, 0.423ns route)
-                                                       (-16.9% logic, 116.9% route)
+    Total                                      0.434ns (0.353ns logic, 0.081ns route)
+                                                       (81.3% logic, 18.7% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point Mram_gold_buf1_RAMA_D1 (SLICE_X8Y23.D2), 1 path
+Paths for end point gold_cnt_set_7 (SLICE_X7Y27.D6), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.358ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               gold_cnt_set_1 (FF)
-  Destination:          Mram_gold_buf1_RAMA_D1 (RAM)
+Slack (hold path):      0.436ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               gold_cnt_set_7 (FF)
+  Destination:          gold_cnt_set_7 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.362ns (Levels of Logic = 0)
-  Clock Path Skew:      0.004ns (0.093 - 0.089)
+  Data Path Delay:      0.436ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_BUFGP rising at 31.250ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path at Fast Process Corner: gold_cnt_set_1 to Mram_gold_buf1_RAMA_D1
+  Minimum Data Path at Fast Process Corner: gold_cnt_set_7 to gold_cnt_set_7
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X8Y24.BQ       Tcko                  0.234   gold_cnt_set<3>
-                                                       gold_cnt_set_1
-    SLICE_X8Y23.D2       net (fanout=4)        0.423   gold_cnt_set<1>
-    SLICE_X8Y23.CLK      Tah         (-Th)     0.295   gold_data_tx<4>
-                                                       Mram_gold_buf1_RAMA_D1
+    SLICE_X7Y27.DQ       Tcko                  0.198   gold_cnt_set<7>
+                                                       gold_cnt_set_7
+    SLICE_X7Y27.D6       net (fanout=2)        0.023   gold_cnt_set<7>
+    SLICE_X7Y27.CLK      Tah         (-Th)    -0.215   gold_cnt_set<7>
+                                                       state[3]_gold_cnt_set[7]_select_147_OUT<7>
+                                                       gold_cnt_set_7
     -------------------------------------------------  ---------------------------
-    Total                                      0.362ns (-0.061ns logic, 0.423ns route)
-                                                       (-16.9% logic, 116.9% route)
+    Total                                      0.436ns (0.413ns logic, 0.023ns route)
+                                                       (94.7% logic, 5.3% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point Mram_gold_buf1_RAMB (SLICE_X8Y23.D2), 1 path
+Paths for end point gold_cnt_get_4 (SLICE_X9Y27.D6), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.358ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               gold_cnt_set_1 (FF)
-  Destination:          Mram_gold_buf1_RAMB (RAM)
+Slack (hold path):      0.437ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               gold_cnt_get_4 (FF)
+  Destination:          gold_cnt_get_4 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.362ns (Levels of Logic = 0)
-  Clock Path Skew:      0.004ns (0.093 - 0.089)
+  Data Path Delay:      0.437ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_BUFGP rising at 31.250ns
   Destination Clock:    CLK_BUFGP rising at 31.250ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path at Fast Process Corner: gold_cnt_set_1 to Mram_gold_buf1_RAMB
+  Minimum Data Path at Fast Process Corner: gold_cnt_get_4 to gold_cnt_get_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X8Y24.BQ       Tcko                  0.234   gold_cnt_set<3>
-                                                       gold_cnt_set_1
-    SLICE_X8Y23.D2       net (fanout=4)        0.423   gold_cnt_set<1>
-    SLICE_X8Y23.CLK      Tah         (-Th)     0.295   gold_data_tx<4>
-                                                       Mram_gold_buf1_RAMB
+    SLICE_X9Y27.DQ       Tcko                  0.198   gold_cnt_get<4>
+                                                       gold_cnt_get_4
+    SLICE_X9Y27.D6       net (fanout=4)        0.024   gold_cnt_get<4>
+    SLICE_X9Y27.CLK      Tah         (-Th)    -0.215   gold_cnt_get<4>
+                                                       state[3]_gold_cnt_get[7]_select_152_OUT<4>
+                                                       gold_cnt_get_4
     -------------------------------------------------  ---------------------------
-    Total                                      0.362ns (-0.061ns logic, 0.423ns route)
-                                                       (-16.9% logic, 116.9% route)
+    Total                                      0.437ns (0.413ns logic, 0.024ns route)
+                                                       (94.5% logic, 5.5% route)
 
 --------------------------------------------------------------------------------
 
@@ -502,7 +568,7 @@ Slack: 29.993ns (period - min period limit)
   Min period limit: 1.257ns (795.545MHz) (Tcp)
   Physical resource: gold_data_tx<7>/CLK
   Logical resource: Mram_gold_buf21/DP/CLK
-  Location pin: SLICE_X8Y22.CLK
+  Location pin: SLICE_X4Y24.CLK
   Clock network: CLK_BUFGP
 --------------------------------------------------------------------------------
 Slack: 29.993ns (period - min period limit)
@@ -510,7 +576,7 @@ Slack: 29.993ns (period - min period limit)
   Min period limit: 1.257ns (795.545MHz) (Tcp)
   Physical resource: gold_data_tx<7>/CLK
   Logical resource: Mram_gold_buf22/DP/CLK
-  Location pin: SLICE_X8Y22.CLK
+  Location pin: SLICE_X4Y24.CLK
   Clock network: CLK_BUFGP
 --------------------------------------------------------------------------------
 
@@ -527,7 +593,7 @@ Clock to Setup on destination clock CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |    5.376|         |         |         |
+CLK            |    9.013|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -536,23 +602,23 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 5514 paths, 0 nets, and 1512 connections
+Constraints cover 102305 paths, 0 nets, and 3943 connections
 
 Design statistics:
-   Minimum period:   5.376ns{1}   (Maximum frequency: 186.012MHz)
+   Minimum period:   9.013ns{1}   (Maximum frequency: 110.951MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Tue Mar 28 15:46:49 2023 
+Analysis completed Fri Apr  7 20:14:55 2023 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 381 MB
+Peak Memory Usage: 390 MB
 
 
 

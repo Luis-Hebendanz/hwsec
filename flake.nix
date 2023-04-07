@@ -21,16 +21,7 @@
     in
     rec {
      devShells = forAllSystems (system: rec {
-        default =
-          let
-            rhea = pypkgs.buildPythonPackage {
-              pname = "reha";
-              version = "2.0";
-              src = reha;
-
-              doCheck = false;
-              buildInputs =  with pypkgs; [ setuptools ];
-            };
+        pythonShell =           let
             pypkgs = spkgs.python310Packages;
             spkgs = pkgs.${system};
             my-python-packages = ps: with ps; [
@@ -40,6 +31,71 @@
               ipython
               pyserial
               numpy
+              matplotlib
+              scikit-learn
+              #myhdl
+              #rhea
+              pytest
+            ];
+            python-with-my-packages = spkgs.python3.withPackages my-python-packages;
+
+          in (spkgs.mkShell {
+          buildInputs = with spkgs; [
+              python-with-my-packages
+              picocom
+              bash
+              coreutils
+              zlib
+              lsb-release
+              stdenv.cc.cc
+              pkg-config
+              ncurses5
+              libuuid
+              xorg.libXext
+              xorg.libICE
+              xorg.libXrandr
+              xorg.libX11
+              xorg.libXrender
+              xorg.libXtst
+              xorg.libXi
+              xorg.libSM
+              xorg.libXft
+              xorg.libxcb
+              xorg.libxcb
+              # common requirements
+              freetype
+              fontconfig
+              glib
+              gtk2
+              gtk3
+
+              # to compile some xilinx examples
+              opencl-clhpp
+              ocl-icd
+              opencl-headers
+
+              # from installLibs.sh
+              graphviz
+              (lib.hiPrio gcc)
+              unzip
+              nettools
+            ] ++ (with luis; [
+              xc3sprog
+            ]);
+        });
+
+        default =
+          let
+            pypkgs = spkgs.python310Packages;
+            spkgs = pkgs.${system};
+            my-python-packages = ps: with ps; [
+              # Add python dependencies here
+              autopep8
+              setuptools
+              ipython
+              pyserial
+              numpy
+              matplotlib
               #myhdl
               #rhea
               pytest

@@ -75,15 +75,21 @@ uart_rx_sol rxi (
 
 
 // Parameters
-localparam SET_PWD = 3'b000,
-				GET_PWD = 3'b001,
-				ERROR = 3'b010,
-				SEND_PWD = 3'b100,
-				IDLE = 3'b111;
+localparam SET_PWD = 4'b0000,
+				GET_PWD = 4'b0001,
+				ERROR = 4'b0010,
+				SEND_PWD = 4'b0100,
+				GET_TIME = 4'b1000,
+				DELAY_SEND  = 4'b0101,
+				RESET_THEN_SEND = 4'b1010,
+				IDLE = 4'b0111;
 
 // Control flow vars		
-reg [2:0] state = IDLE;
+reg [3:0] state = IDLE;
 reg wait_flag = 0;
+reg [63:0] delay = 0;
+reg send_pwd = 0;
+
 
 // Buffers
 reg [7:0] gold_buf [0:15];
@@ -93,9 +99,10 @@ reg [7:0] fpga_buf [3:0];
 // Counters
 reg [7:0] gold_cnt_get = 8'b0;
 reg [7:0] gold_cnt_set = 8'b0;
-reg [31:0] clk_cnt = 0;
 reg [7:0] fpga_cnt = 8'b0;
-
+reg [63:0] clk_cnt = 0;
+reg [63:0] pwd_check_time = 0;
+reg [7:0] recv_chars = 0;
 
 // Init Buffers
 integer i;
@@ -113,13 +120,23 @@ en 			  	<= 0; // disable fpga transmitter
 A4			 		<= 1; // reset is high so no reset
 gold_en 			<= 0; // disable gold transmitter
 LED1 				<= 0; // Disable LED
+clk_cnt 			<= clk_cnt + 1; // number of clock cycles
 gold_cnt_get 	<= gold_cnt_get;
 gold_cnt_set   <= gold_cnt_set;
 state 			<= state;
 data_tx 			<= data_tx;
 gold_data_tx   <= gold_data_tx;
-
+delay    		<= delay;
 rst 				<= rst;
+pwd_check_time <= pwd_check_time;
+send_pwd       <= send_pwd;
+recv_chars     <= recv_chars;
+
+	
+if(send_pwd)
+begin
+	pwd_check_time <= pwd_check_time +1;
+end
 
 case(state)
 
@@ -133,6 +150,13 @@ SET_PWD: begin
 	if(gold_cnt_set >= 16)
 	begin
 		state <= IDLE;
+	end
+end
+
+DELAY_SEND: begin
+	if(clk_cnt >= delay) //* (`SYSTEM_CLOCK / 1000 / 1000)) // Delay is in microseconds
+	begin
+		state <= SEND_PWD;
 	end
 end
 
@@ -150,9 +174,9 @@ SEND_PWD: begin
 		gold_en 			<= 1;
 	end
 	
-	
 	if(gold_cnt_get >= 16)
 	begin
+		send_pwd <= 1;
 		state <= IDLE;
 	end
 end
@@ -178,11 +202,104 @@ GET_PWD: begin
 end
 
 ERROR: begin
-	clk_cnt <= clk_cnt + 1; // number of clock cycles
+	en 				<= 1;
+
 	if(clk_cnt >= `UART_FULL_ETU)
 	begin
 		clk_cnt <= 0;
 		LED1 <= ~LED1;
+	end
+end
+
+GET_TIME: begin
+
+	if(pwd_check_time == 0)
+	begin
+		if(rdy && wait_flag == 0) begin
+			data_tx        <= "!"; // ! character signals end of time
+			en 				<= 1;
+			state <= IDLE;
+		end
+		wait_flag <= 0;
+	end else if (pwd_check_time < 10 && pwd_check_time > 0) begin
+		if(rdy == 0)
+		begin
+			wait_flag <= 0;
+		end
+
+		if(rdy && wait_flag == 0)
+		begin
+			data_tx        <= "."; // every . character signals 1 cycle wait time 
+			wait_flag 		<= 1;
+			en 				<= 1;
+			pwd_check_time <= pwd_check_time - 1;
+		end
+	end else if(pwd_check_time >= 10 && pwd_check_time < 100)
+	begin
+		if(rdy == 0)
+		begin
+			wait_flag <= 0;
+		end
+
+		if(rdy && wait_flag == 0)
+		begin
+			data_tx        <= "+"; // every + character signals 10 cycles wait time 
+			wait_flag 		<= 1;
+			en 				<= 1;
+			pwd_check_time <= pwd_check_time - 10;
+		end
+	end else if(pwd_check_time >= 100)
+	begin	
+		if(rdy == 0)
+		begin
+			wait_flag <= 0;
+		end
+
+		if(rdy && wait_flag == 0)
+		begin
+			data_tx        <= "#"; // every # character signals 100 cycles wait time 
+			wait_flag 		<= 1;
+			en 				<= 1;
+			pwd_check_time <= pwd_check_time - 100;
+		end
+	end else 
+	begin
+		data_tx <= "1";
+		state <= ERROR;
+	end
+end
+
+RESET_THEN_SEND: begin
+	
+	if(gold_valid) // if fpga received data from gold board
+	begin
+		fpga_buf[fpga_cnt] <= gold_data_rx; // buffer gold data to fpga_buf[cnt]
+		fpga_cnt <= fpga_cnt +1;
+		recv_chars <= recv_chars +1;
+		if(fpga_cnt > 4) // check for buffer overflow
+		begin
+			data_tx <= "2";
+			state <= ERROR;
+		end
+	end
+	
+	if(rdy) // Check if fpga transmitter ready
+	begin
+		if(fpga_cnt > 0) // check if data is in fpga buffer 
+		begin
+			data_tx <= fpga_buf[fpga_cnt -1]; // send data from buffer at cnt - 1
+			fpga_cnt <= fpga_cnt -1; // decrement cnt
+			en <= 1;
+		end
+	end
+	
+	
+	if(recv_chars == 29)
+	begin
+		state <= DELAY_SEND;
+	end else if (recv_chars > 29) begin
+		data_tx <= "7";
+		state <= ERROR;
 	end
 end
 
@@ -193,9 +310,11 @@ IDLE: begin
 	begin
 		fpga_buf[fpga_cnt] <= gold_data_rx; // buffer gold data to fpga_buf[cnt]
 		fpga_cnt <= fpga_cnt +1;
+		send_pwd <= 0; // Disable pwd check time counter
 		
 		if(fpga_cnt > 4) // check for buffer overflow
 		begin
+			data_tx <= "3";
 			state <= ERROR;
 		end
 	end
@@ -218,10 +337,32 @@ IDLE: begin
 				gold_cnt_set <= 0;
 				state <= SET_PWD;
 			end
+			"t": begin
+				wait_flag       <= 0;
+				state          <= GET_TIME;
+			end
+			"D": begin
+				delay <= 0;
+			end
+			"d": begin
+				delay <= delay; // Every 'd' is a 1 cycle delay increase
+			end
+			"P": begin
+				gold_cnt_get   <= 0;
+				send_pwd       <=  0;
+				wait_flag       <= 0;
+				pwd_check_time <= 0;
+				state          <= SEND_PWD;
+			end
 			"p": begin
-				gold_cnt_get <= 0;
-				wait_flag <= 0;
-				state <= SEND_PWD;
+				A4             <= 0; // Reset board
+				gold_cnt_get   <= 0;
+				wait_flag       <= 0;
+				clk_cnt        <= 0;
+				send_pwd       <= 0;
+				pwd_check_time <= 0;
+				recv_chars     <= 0;
+				state          <= RESET_THEN_SEND;
 			end
 			"g": begin
 				gold_cnt_get <= 0;
@@ -238,6 +379,7 @@ IDLE: begin
 					en <= 1;
 				end else 
 				begin
+					data_tx <= "4";
 					state <= ERROR;
 				end
 			end
