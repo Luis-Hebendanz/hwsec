@@ -1,0 +1,3 @@
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QDie Memory Management Unit (MMU) ist Teil der x8664 CPU und verwaltet die ausführ, schreibe und lese Rechte von Random Access Memory (RAM).\\E$"}
+{"rule":"NIX","sentence":"^\\Q[2W] Der erste Schritt wäre es ein Reproduzierbares 'Build Environment' mit Nix \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q zu erstellen für den Bochs Emulator mit UBSan \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q und einem funktionierendem C++ Language Server.\\E$"}
