@@ -1,4 +1,4 @@
-Running: /home/lhebendanz/Projects/hwsec2/xilinx_install/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/lhebendanz/Projects/hwsec2/hwsec/top_test_isim_beh.exe" -prj "/home/lhebendanz/Projects/hwsec2/hwsec/top_test_beh.prj" "work.top_test" "work.glbl" 
+Running: /home/lhebendanz/Projects/hwsec2/xilinx_install/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o /home/lhebendanz/Projects/hwsec2/hwsec/top_test_isim_beh.exe -prj /home/lhebendanz/Projects/hwsec2/hwsec/top_test_beh.prj work.top_test work.glbl 
 ISim P.20131013 (signature 0xfbc00daa)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
@@ -12,16 +12,17 @@ Analyzing Verilog file "/home/lhebendanz/Projects/hwsec2/xilinx_install/14.7/ISE
 Starting static elaboration
 WARNING:HDLCompiler:1016 - "/home/lhebendanz/Projects/hwsec2/hwsec/top_test.v" Line 17: Port A1 is not connected to this instance
 Completed static elaboration
-Fuse Memory Usage: 82820 KB
-Fuse CPU Usage: 550 ms
+Fuse Memory Usage: 82816 KB
+Fuse CPU Usage: 510 ms
 Compiling module uart_rx_sol
 Compiling module uart_tx_sol
 Compiling module top
 Compiling module top_test
 Compiling module glbl
 Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
 Compiled 5 Verilog Units
 Built simulation executable /home/lhebendanz/Projects/hwsec2/hwsec/top_test_isim_beh.exe
-Fuse Memory Usage: 1167112 KB
-Fuse CPU Usage: 570 ms
-GCC CPU Usage: 210 ms
+Fuse Memory Usage: 1167492 KB
+Fuse CPU Usage: 540 ms
+GCC CPU Usage: 830 ms

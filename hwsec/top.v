@@ -154,7 +154,7 @@ SET_PWD: begin
 end
 
 DELAY_SEND: begin
-	if(clk_cnt >= delay) //* (`SYSTEM_CLOCK / 1000 / 1000)) // Delay is in microseconds
+	if(clk_cnt >= delay) // Delay is in cycles
 	begin
 		state <= SEND_PWD;
 	end
@@ -248,7 +248,7 @@ GET_TIME: begin
 			en 				<= 1;
 			pwd_check_time <= pwd_check_time - 10;
 		end
-	end else if(pwd_check_time >= 100)
+	end else if(pwd_check_time >= 100 && pwd_check_time < 1000)
 	begin	
 		if(rdy == 0)
 		begin
@@ -261,6 +261,19 @@ GET_TIME: begin
 			wait_flag 		<= 1;
 			en 				<= 1;
 			pwd_check_time <= pwd_check_time - 100;
+		end
+	end else if(pwd_check_time >= 1000) begin
+		if(rdy == 0)
+		begin
+			wait_flag <= 0;
+		end
+
+		if(rdy && wait_flag == 0)
+		begin
+			data_tx        <= "$"; // every $ character signals 1000 cycles wait time 
+			wait_flag 		<= 1;
+			en 				<= 1;
+			pwd_check_time <= pwd_check_time - 1000;
 		end
 	end else 
 	begin
@@ -344,8 +357,17 @@ IDLE: begin
 			"D": begin
 				delay <= 0;
 			end
+			"a": begin
+				delay <= delay + 1000; // Every 'a' is a 1000 cycle delay increase
+			end
 			"d": begin
-				delay <= delay; // Every 'd' is a 1 cycle delay increase
+				delay <= delay + 100; // Every 'd' is a 100 cycle delay increase
+			end
+			"f": begin
+				delay <= delay + 10; // Every 'f' is a 10 cycle delay increase
+			end
+			"v": begin
+				delay <= delay + 1; // Every 'v' is a 1 cycle delay increase
 			end
 			"P": begin
 				gold_cnt_get   <= 0;

